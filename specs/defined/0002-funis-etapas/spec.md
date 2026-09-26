@@ -730,7 +730,7 @@ Formato:
   - [ ] **EVIDENCE**: Registrar arquivos e viewports.
   - [ ] **IMPROVE**: Registrar ou nenhuma.
 
-- [ ] T021 [CODE] [US-002] Página resources/js/pages/funis/show.tsx com resources/js/components/stage-form-sheet.tsx — Refs: US-002, US-003, FR-003, FR-004, FR-006, NFR-002, AC-009, AC-010, AC-011, AC-012, AC-014 — Depends: T019, T020
+- [ ] T021 [CODE] [US-002] Página resources/js/pages/funis/show.tsx com resources/js/components/stage-form-sheet.tsx — Refs: US-002, US-003, FR-003, FR-004, FR-006, NFR-002, AC-009, AC-010, AC-011, AC-012, AC-014 — Depends: T019, T020, T014
   - [ ] **PREP**: Carregar `$specsfy-specialist-react-ui-components` e `$specsfy-specialist-shadcn-ui`; ler DESIGNSYSTEM.MD e INTERFACE.md; reutilizar PageHeader, FlashMessage, EmptyState, ConfirmDialog, Table e o padrão de painel de project-form-sheet.tsx.
   - [ ] **EXECUTE**: Lista ordenada das etapas (posição, nome); adm: botões ↑ ↓ com aria-label (desabilitados nas pontas), renomear e "Nova etapa" no painel lateral, apagar com ConfirmDialog (desabilitado quando só há 1 etapa); breadcrumbs Projetos / <projeto> / <funil>; gestor só lê.
   - [ ] **VERIFY**: Criar, renomear, mover e apagar pela UI; foco volta ao botão após mover; `npx tsc --noEmit`.

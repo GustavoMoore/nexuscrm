@@ -6,6 +6,7 @@
 | Ordem | Spec | Estado | Milestones |
 | --- | --- | --- | --- |
 | 01 | 0001-acesso-adm-gestores | Defined | — |
+| 02 | 0002-funis-etapas | Defined | — |
 
 ## Marcos
 

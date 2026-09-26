@@ -5,14 +5,14 @@
 | Formato | Specsfy/2.0 |
 | ID | SPEC-0002 |
 | Slug | 0002-funis-etapas |
-| Status | Draft |
+| Status | Defined |
 | Effort | 3 |
 | Effort updated at | 2026-09-27 |
 | Effort rationale | Duas tabelas, dois controllers, duas telas reutilizando os componentes da SPEC-0001; sem integração externa. |
 | ClickUp Task | |
 | Milestones | Núcleo (MVP) — fatia 2 |
 | Definition Gate | Passed |
-| Plan Gate | Pending |
+| Plan Gate | Passed |
 | Delivery Gate | Pending |
 | Evidence Contract | 1 |
 | Interface para pessoas | Sim — adm configura funis e etapas; gestor consulta |
@@ -345,7 +345,7 @@ Feature: Telas de funis entregam as props esperadas
 
 #### Funcionais
 
-- **FR-001**: O adm deve criar e renomear funis dentro de um projeto (nome obrigatório, ≤ 255, único no projeto sem diferenciar maiúsculas; sem limite de quantidade). Todo funil criado recebe, na mesma transação, as etapas "Novo contato", "Qualificação", "Proposta" e "Negociação", nessa ordem.
+- **FR-001**: O adm deve criar e renomear funis dentro de um projeto (nome obrigatório, ≤ 255, único no projeto sem diferenciar maiúsculas; sem limite de quantidade). Cada funil criado recebe, na mesma transação, as etapas "Novo contato", "Qualificação", "Proposta" e "Negociação", nessa ordem.
 - **FR-002**: O adm deve arquivar e desarquivar funis; funil arquivado não aparece nem abre para gestores; o adm vê ativos e arquivados.
 - **FR-003**: O adm deve adicionar etapa no fim, renomear (nome obrigatório, ≤ 255, único no funil sem diferenciar maiúsculas) e mover etapa uma posição acima ou abaixo; mover nas pontas não altera nada. Rotas aninhadas garantem que etapa e funil pertencem ao funil e ao projeto da URL (404 caso contrário).
 - **FR-004**: O adm deve apagar etapas, desde que o funil mantenha ao menos 1 etapa; as posições restantes ficam contínuas.
@@ -553,14 +553,14 @@ tests/Feature/{FunnelTest,StageTest}.php
 #### Gate do Ato I — Definição
 
 - **Resultado**: Passed (2026-09-27)
-- **Comando**: `node .agents/skills/specsfy-04-validate/scripts/validate_spec.mjs specs/draft/0002-funis-etapas/spec.md`
+- **Comando**: `node .agents/skills/specsfy-04-validate/scripts/validate_spec.mjs specs/defined/0002-funis-etapas/spec.md`
 - **Achados**: validação estrutural sem erros; aprovação do responsável em 2026-09-27.
 
 #### Gate do Ato II — Plano
 
-- **Resultado**: Pending
+- **Resultado**: Passed (2026-09-27)
 - **Comando**: `node .agents/skills/specsfy-05-tasks/scripts/validate_tasks.mjs specs/defined/0002-funis-etapas/spec.md`
-- **Achados**: Pending.
+- **Achados**: 23 tarefas, 14 RED antes do código; sem erros.
 
 #### Gate do Ato III — Entrega
 
@@ -686,7 +686,7 @@ Formato:
 
 - [ ] T016 [CODE] [US-001] Models app/Models/Funnel.php e app/Models/Stage.php e relação funnels() em app/Models/Project.php — Refs: US-001, US-002, FR-001, FR-003, AC-001, AC-009 — Depends: T015
   - [ ] **PREP**: Ler `.agents/skills/specsfy-specialist-laravel`.
-  - [ ] **EXECUTE**: Funnel: project(), stages() ordenado por position, scope active(); Stage: funnel(); `$fillable` só name; criação das 4 etapas padrão num método do model dentro de transação.
+  - [ ] **EXECUTE**: Funnel: project(), stages() ordenado por position, scope active(); Stage: funnel(); `$fillable` só name; criação das 4 etapas padrão em função do model dentro de transação.
   - [ ] **VERIFY**: `php artisan test --filter=AC_001` verde.
   - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa não altera superfície visual.
   - [ ] **EVIDENCE**: Registrar arquivos, comandos e saída.

@@ -14,8 +14,8 @@ as permissões e as telas relacionadas.
 | Escopo | Produto inteiro |
 | Status | Ativo |
 | Versão | 1.0.0 |
-| Atualizado em | A preencher |
-| Responsável | A preencher |
+| Atualizado em | 2026-09-26 |
+| Responsável | Dono do projeto (Guzaum) |
 
 ## Política de direção
 
@@ -330,3 +330,17 @@ tokens antes do item `EVIDENCE` da tarefa.
 | 1.0.0 | A preencher | Criação dos defaults de SaaS e dos cenários CRUD | Produto |
 
 <!-- markdownlint-enable MD013 -->
+
+## Direção visual vigente
+
+Confirmada pelo responsável em 2026-09-26: sem marca por enquanto. Visual
+neutro e limpo (defaults deste documento + shadcn/ui), nome do produto exibido
+como texto "Nexus", sem logo. Cores, logo e fontes serão trocados quando o
+responsável enviar referências visuais; manter tokens centralizados para essa
+troca ser só de tema.
+
+## Padrão de ação (produto inteiro)
+
+Confirmado em 2026-09-26: criar e editar registros acontece em painel lateral
+(shadcn `Sheet`, lado direito), com a lista visível atrás. Modal só para
+confirmação de ação destrutiva.

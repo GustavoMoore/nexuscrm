@@ -711,11 +711,317 @@ tests/Feature/{AccessTest,UserManagementTest,ProjectTest}.php
 
 ### 14. Tarefas
 
-- Geradas por `$specsfy-05-tasks` após o Definition Gate.
+Formato:
+`- [ ] TNNN [P?] [TIPO] [US-NNN?] Ação com caminho — Refs: IDs — Depends: IDs|none`
+
+#### Fase 1 — RED TDD informado pelo BDD
+
+- [ ] T001 [P] [TEST] [TDD] [US-003] Derivar do AC-001 caso(s) Pest falhando em tests/Feature/AccessTest.php — Refs: US-003, FR-001, NFR-001, AC-001 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-001; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-001`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_001` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T002 [P] [TEST] [TDD] Derivar do AC-002 caso(s) Pest falhando em tests/Feature/AccessTest.php — Refs: FR-001, NFR-001, AC-002 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-002; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-002`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_002` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T003 [P] [TEST] [TDD] Derivar do AC-003 caso(s) Pest falhando em tests/Feature/AccessTest.php — Refs: FR-001, AC-003 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-003; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-003`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_003` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T004 [P] [TEST] [TDD] [US-001] Derivar do AC-004 caso(s) Pest falhando em tests/Feature/UserManagementTest.php — Refs: US-001, FR-002, AC-004 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-004; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-004`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_004` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T005 [P] [TEST] [TDD] [US-001] Derivar do AC-005 caso(s) Pest falhando em tests/Feature/UserManagementTest.php — Refs: US-001, FR-002, NFR-002, AC-005 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-005; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-005`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_005` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T006 [P] [TEST] [TDD] [US-001] Derivar do AC-006 caso(s) Pest falhando em tests/Feature/UserManagementTest.php — Refs: US-001, FR-002, FR-003, AC-006 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-006; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-006`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_006` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T007 [P] [TEST] [TDD] [US-003] Derivar do AC-007 caso(s) Pest falhando em tests/Feature/AccessTest.php — Refs: US-003, FR-003, NFR-001, AC-007 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-007; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-007`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_007` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T008 [P] [TEST] [TDD] [US-003] Derivar do AC-008 caso(s) Pest falhando em tests/Feature/AccessTest.php — Refs: US-003, FR-003, AC-008 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-008; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-008`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_008` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T009 [P] [TEST] [TDD] [US-001] Derivar do AC-009 caso(s) Pest falhando em tests/Feature/UserManagementTest.php — Refs: US-001, FR-004, AC-009 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-009; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-009`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_009` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T010 [P] [TEST] [TDD] Derivar do AC-010 caso(s) Pest falhando em tests/Feature/UserManagementTest.php — Refs: FR-004, NFR-001, AC-010 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-010; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-010`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_010` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T011 [P] [TEST] [TDD] Derivar do AC-011 caso(s) Pest falhando em tests/Feature/UserManagementTest.php — Refs: FR-004, AC-011 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-011; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-011`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_011` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T012 [P] [TEST] [TDD] [US-002] Derivar do AC-012 caso(s) Pest falhando em tests/Feature/ProjectTest.php — Refs: US-002, FR-005, AC-012 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-012; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-012`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_012` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T013 [P] [TEST] [TDD] [US-002] Derivar do AC-013 caso(s) Pest falhando em tests/Feature/ProjectTest.php — Refs: US-002, FR-005, FR-006, AC-013 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-013; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-013`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_013` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T014 [P] [TEST] [TDD] [US-002] Derivar do AC-014 caso(s) Pest falhando em tests/Feature/ProjectTest.php — Refs: US-002, FR-005, AC-014 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-014; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-014`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_014` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T015 [P] [TEST] [TDD] [US-003] Derivar do AC-015 caso(s) Pest falhando em tests/Feature/ProjectTest.php — Refs: US-003, FR-006, AC-015 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-015; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-015`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_015` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T016 [P] [TEST] [TDD] [US-003] Derivar do AC-016 caso(s) Pest falhando em tests/Feature/ProjectTest.php — Refs: US-003, FR-006, NFR-001, AC-016 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-016; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-016`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_016` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T017 [P] [TEST] [TDD] Derivar do AC-017 caso(s) Pest falhando em tests/Feature/AccessTest.php — Refs: FR-006, FR-007, NFR-001, AC-017 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-017; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-017`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_017` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T018 [P] [TEST] [TDD] Derivar do AC-018 caso(s) Pest falhando em tests/Feature/AccessTest.php — Refs: FR-007, NFR-002, AC-018 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-018; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-018`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_018` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T019 [P] [TEST] [TDD] [US-001] Derivar do AC-019 caso(s) Pest falhando em tests/Feature/UserManagementTest.php — Refs: US-001, FR-007, NFR-002, AC-019 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-019; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-019`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_019` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+- [ ] T020 [P] [TEST] [TDD] [US-002] Derivar do AC-020 caso(s) Pest falhando em tests/Feature/ProjectTest.php — Refs: US-002, FR-005, NFR-001, AC-020 — Depends: none
+  - [ ] **PREP**: Ler o Gherkin do AC-020; confirmar `check_database_safety.mjs` = SAFE.
+  - [ ] **EXECUTE**: Escrever o caso com marcador `// SPECSFY: AC-020`; usar `assertInertia` para props de tela; sem `.feature`.
+  - [ ] **VERIFY**: `php artisan test --filter=AC_020` falha pela razão esperada (rota/coluna/regra ausente), não por erro de sintaxe.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa só materializa teste.
+  - [ ] **EVIDENCE**: Registrar comando e motivo do RED na seção 11.
+  - [ ] **IMPROVE**: Registrar lacuna de cobertura encontrada ou nenhuma.
+
+#### Fase 2 — Fundação de dados
+
+- [ ] T021 [CODE] [MIGRATION] [US-001] Adicionar role, deactivated_at e must_change_password em database/migrations/2026_09_26_000001_add_role_and_status_to_users_table.php — Refs: US-001, FR-002, FR-003, FR-004, AC-004, AC-006, AC-007, AC-009 — Depends: T004, T006, T007, T009
+  - [ ] **PREP**: Confirmar RED e banco de teste separado.
+  - [ ] **EXECUTE**: Criar migration aditiva; aplicar em teste e dev com `php artisan migrate` (nunca fresh).
+  - [ ] **VERIFY**: `php artisan migrate --env=testing` e `php artisan migrate:status --env=testing` com a migration Ran.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa não altera superfície visual.
+  - [ ] **EVIDENCE**: Registrar arquivo, comandos e saída.
+  - [ ] **IMPROVE**: Registrar compatibilidade ou nenhuma.
+
+- [ ] T022 [CODE] [MIGRATION] [US-002] Criar projects e project_user em database/migrations/2026_09_26_000002_create_projects_tables.php — Refs: US-002, FR-005, FR-006, AC-012, AC-013, AC-014, AC-015 — Depends: T012, T013, T014, T015
+  - [ ] **PREP**: Confirmar RED e banco de teste separado.
+  - [ ] **EXECUTE**: Criar tabelas com índice único em lower(name) e FKs cascade; aplicar em teste e dev.
+  - [ ] **VERIFY**: `php artisan migrate --env=testing` e `php artisan migrate:status --env=testing`.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa não altera superfície visual.
+  - [ ] **EVIDENCE**: Registrar arquivo e comandos.
+  - [ ] **IMPROVE**: Registrar ou nenhuma.
+
+#### Fase 3 — US-003 Gestor acessa só o que lhe cabe (P1)
+
+**Objetivo**: sem cadastro público, troca obrigatória de senha, desativação efetiva.
+**Teste independente**: `php artisan test --filter=AccessTest`.
+
+- [ ] T023 [CODE] [US-003] Remover cadastro, recuperação, verificação, confirmação de senha e autoexclusão em routes/auth.php, routes/settings.php, app/Http/Controllers/Auth e app/Http/Controllers/Settings/ProfileController.php — Refs: US-003, FR-001, NFR-001, AC-001, AC-002, AC-003 — Depends: T001, T002, T003
+  - [ ] **PREP**: Confirmar RED dos predecessores; ler `.agents/skills/specsfy-specialist-laravel`; rodar `$specsfy-documentator` antes de EXECUTE.
+  - [ ] **EXECUTE**: Apagar controllers/rotas/testes do starter kit das funções removidas; ProfileUpdateRequest aceita só `name`.
+  - [ ] **VERIFY**: `php artisan test --filter=AccessTest` verde para AC-001..003; `php artisan route:list` sem register/password.*/verification.*.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa não altera superfície visual.
+  - [ ] **EVIDENCE**: Registrar arquivos removidos e GREEN.
+  - [ ] **IMPROVE**: Revisar referências órfãs com grep.
+
+- [ ] T024 [CODE] [US-003] Login com attemptWhen, middleware app/Http/Middleware/EnsurePasswordChanged.php e app/Http/Controllers/PasswordChangeController.php — Refs: US-003, FR-003, FR-004, NFR-001, AC-007, AC-008, AC-009, AC-010 — Depends: T007, T008, T009, T010, T021
+  - [ ] **PREP**: Confirmar RED dos predecessores; ler `.agents/skills/specsfy-specialist-laravel`; rodar `$specsfy-documentator` antes de EXECUTE.
+  - [ ] **EXECUTE**: `LoginRequest` com `Auth::attemptWhen`; middleware desloga desativado e redireciona troca pendente; rotas `/trocar-senha`; redirect pós-login para `agenda`.
+  - [ ] **VERIFY**: `php artisan test --filter='AC_007|AC_008|AC_009|AC_010'` verde.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa não altera superfície visual.
+  - [ ] **EVIDENCE**: Registrar GREEN.
+  - [ ] **IMPROVE**: Registrar ou nenhuma.
+
+#### Fase 4 — US-001 Adm gerencia gestores (P1)
+
+**Objetivo**: adm cria, edita, redefine senha, desativa e reativa gestores.
+**Teste independente**: `php artisan test --filter=UserManagementTest`.
+
+- [ ] T025 [CODE] [US-001] Implementar app/Http/Controllers/UserController.php, Gate `adm` e rotas /usuarios — Refs: US-001, FR-002, FR-004, AC-004, AC-005, AC-006, AC-011 — Depends: T004, T005, T006, T011, T021
+  - [ ] **PREP**: Confirmar RED dos predecessores; ler `.agents/skills/specsfy-specialist-laravel`; rodar `$specsfy-documentator` antes de EXECUTE.
+  - [ ] **EXECUTE**: store/update/deactivate/activate/resetPassword com `forceFill` nos campos protegidos, e-mail `lowercase|unique`, apagar sessões e girar remember_token ao redefinir/desativar.
+  - [ ] **VERIFY**: `php artisan test --filter=UserManagementTest` verde (exceto AC-019 de UI).
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa não altera superfície visual.
+  - [ ] **EVIDENCE**: Registrar GREEN.
+  - [ ] **IMPROVE**: Registrar ou nenhuma.
+
+- [ ] T026 [CODE] [US-001] Criar primeiro adm por comando em routes/console.php e contas de teste em database/seeders/DatabaseSeeder.php — Refs: US-001, FR-002, AC-004, AC-005, AC-006 — Depends: T025
+  - [ ] **PREP**: Confirmar RED dos predecessores; ler `.agents/skills/specsfy-specialist-laravel`; rodar `$specsfy-documentator` antes de EXECUTE.
+  - [ ] **EXECUTE**: `nexus:criar-adm` interativo; seeder cria adm@nexus.test e gestor@nexus.test (senha `password`, sem troca pendente) só em local.
+  - [ ] **VERIFY**: `php artisan db:seed` em dev e login manual nas duas contas.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa não altera superfície visual.
+  - [ ] **EVIDENCE**: Registrar comandos.
+  - [ ] **IMPROVE**: Registrar ou nenhuma.
+
+#### Fase 5 — US-002 Adm gerencia projetos (P1)
+
+**Objetivo**: projetos, arquivamento e atribuição com isolamento.
+**Teste independente**: `php artisan test --filter=ProjectTest`.
+
+- [ ] T027 [CODE] [US-002] Implementar app/Models/Project.php, app/Policies/ProjectPolicy.php e app/Http/Controllers/ProjectController.php com rotas /projetos — Refs: US-002, US-003, FR-005, FR-006, NFR-001, AC-012, AC-013, AC-014, AC-015, AC-016, AC-020 — Depends: T012, T013, T014, T015, T016, T020, T022
+  - [ ] **PREP**: Confirmar RED dos predecessores; ler `.agents/skills/specsfy-specialist-laravel`; rodar `$specsfy-documentator` antes de EXECUTE.
+  - [ ] **EXECUTE**: Scope `visibleTo`, Policy view/escrita, `user_ids` validados como gestores, inativos preservados no sync, props `can.*`.
+  - [ ] **VERIFY**: `php artisan test --filter=ProjectTest` verde.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa não altera superfície visual.
+  - [ ] **EVIDENCE**: Registrar GREEN.
+  - [ ] **IMPROVE**: Registrar ou nenhuma.
+
+- [ ] T028 [CODE] [US-001] Compartilhar name/is_adm/flash em app/Http/Middleware/HandleInertiaRequests.php e rotas / e /agenda em routes/web.php — Refs: US-001, FR-006, FR-007, NFR-002, AC-017, AC-018, AC-019 — Depends: T017, T018, T019, T025
+  - [ ] **PREP**: Confirmar RED dos predecessores; ler `.agents/skills/specsfy-specialist-laravel`; rodar `$specsfy-documentator` antes de EXECUTE.
+  - [ ] **EXECUTE**: APP_NAME=Nexus; `/` redireciona; `/agenda` renderiza `agenda`; manter rota `home`.
+  - [ ] **VERIFY**: `php artisan test --filter='AC_017|AC_018|AC_019'` verde.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa não altera superfície visual.
+  - [ ] **EVIDENCE**: Registrar GREEN.
+  - [ ] **IMPROVE**: Registrar ou nenhuma.
+
+#### Fase de interface
+
+- [ ] T029 [CODE] [US-001] Shell Nexus: resources/js/components/app-logo.tsx, app-sidebar.tsx, nav-main.tsx, app-header.tsx, page-header.tsx, empty-state.tsx, flash-message.tsx e resources/js/pages/agenda.tsx — Refs: US-001, FR-007, NFR-002, AC-017, AC-018, AC-019 — Depends: T028
+  - [ ] **PREP**: Carregar `$specsfy-specialist-react-ui-components`, `$specsfy-specialist-shadcn-ui` e `$specsfy-specialist-reui`; ler DESIGNSYSTEM.MD e INTERFACE.md; reutilizar componentes do starter kit.
+  - [ ] **EXECUTE**: Texto "Nexus" sem logo; menu Minha agenda/Projetos/Usuários (só adm); `aria-current="page"` por prefixo; remover links do starter kit; apagar welcome.tsx e dashboard.tsx.
+  - [ ] **VERIFY**: Navegar por teclado; `npx tsc --noEmit`.
+  - [ ] **VISUAL**: Conferir bordas, espaçamentos, margens, padding e tipografia (família, peso, tamanho, altura de linha, quebra) em 1440px e 390px, estados vazio/dados/erro/sem permissão, foco e teclado.
+  - [ ] **EVIDENCE**: Registrar arquivos, viewports e ajustes.
+  - [ ] **IMPROVE**: Registrar ou nenhuma.
+
+- [ ] T030 [CODE] [US-001] Tela Usuários em resources/js/pages/usuarios/index.tsx com user-form-sheet.tsx, confirm-dialog.tsx e DataGrid ReUI em resources/js/components/reui — Refs: US-001, FR-002, FR-004, NFR-002, AC-004, AC-005, AC-006, AC-011, AC-019 — Depends: T025, T029
+  - [ ] **PREP**: Carregar `$specsfy-specialist-react-ui-components`, `$specsfy-specialist-shadcn-ui` e `$specsfy-specialist-reui`; ler DESIGNSYSTEM.MD e INTERFACE.md; reutilizar componentes do starter kit. Instalar `npx shadcn@latest add @reui/data-grid` (variante Radix).
+  - [ ] **EXECUTE**: Lista com ID, nome, e-mail, status (Badge com texto); painel lateral criar/editar/redefinir; confirmar desativar; erros com aria-invalid/aria-describedby (InputError com id).
+  - [ ] **VERIFY**: Criar, editar, redefinir, desativar e reativar pela UI; Esc devolve foco; `npx tsc --noEmit`.
+  - [ ] **VISUAL**: Conferir bordas, espaçamentos, margens, padding e tipografia (família, peso, tamanho, altura de linha, quebra) em 1440px e 390px, estados vazio/dados/erro/sem permissão, foco e teclado.
+  - [ ] **EVIDENCE**: Registrar arquivos e viewports.
+  - [ ] **IMPROVE**: Registrar ou nenhuma.
+
+- [ ] T031 [CODE] [US-002] Telas resources/js/pages/projetos/index.tsx e resources/js/pages/projetos/show.tsx com project-form-sheet.tsx — Refs: US-002, US-003, FR-005, FR-006, AC-012, AC-013, AC-014, AC-015 — Depends: T027, T030
+  - [ ] **PREP**: Carregar `$specsfy-specialist-react-ui-components`, `$specsfy-specialist-shadcn-ui` e `$specsfy-specialist-reui`; ler DESIGNSYSTEM.MD e INTERFACE.md; reutilizar componentes do starter kit.
+  - [ ] **EXECUTE**: Lista com ID e filtro Ativos/Arquivados (adm); linha abre detalhe; painel com checkboxes de gestores e inativos marcados/desabilitados; confirmar arquivar; detalhe com EmptyState de funis.
+  - [ ] **VERIFY**: Fluxo como adm e como gestor; `npx tsc --noEmit`.
+  - [ ] **VISUAL**: Conferir bordas, espaçamentos, margens, padding e tipografia (família, peso, tamanho, altura de linha, quebra) em 1440px e 390px, estados vazio/dados/erro/sem permissão, foco e teclado.
+  - [ ] **EVIDENCE**: Registrar arquivos e viewports.
+  - [ ] **IMPROVE**: Registrar ou nenhuma.
+
+- [ ] T032 [CODE] [US-003] Tela resources/js/pages/auth/trocar-senha.tsx e limpeza de resources/js/pages/auth/login.tsx e resources/js/pages/settings/profile.tsx — Refs: US-003, FR-001, FR-003, AC-001, AC-002, AC-003, AC-007, AC-008 — Depends: T023, T024, T029
+  - [ ] **PREP**: Carregar `$specsfy-specialist-react-ui-components`, `$specsfy-specialist-shadcn-ui` e `$specsfy-specialist-reui`; ler DESIGNSYSTEM.MD e INTERFACE.md; reutilizar componentes do starter kit.
+  - [ ] **EXECUTE**: Login sem links de cadastro/recuperação; perfil só com nome; apagar páginas auth removidas e delete-user.tsx.
+  - [ ] **VERIFY**: Primeiro acesso completo com gestor novo; `npx tsc --noEmit`.
+  - [ ] **VISUAL**: Conferir bordas, espaçamentos, margens, padding e tipografia (família, peso, tamanho, altura de linha, quebra) em 1440px e 390px, estados vazio/dados/erro/sem permissão, foco e teclado.
+  - [ ] **EVIDENCE**: Registrar arquivos e viewports.
+  - [ ] **IMPROVE**: Registrar ou nenhuma.
+
+#### Fase final — Documentação e qualidade
+
+- [ ] T033 [DOC] [US-002] Atualizar .specsfy/DATABASE.md com users (novas colunas), projects e project_user — Refs: US-002, FR-005, AC-012, AC-013, AC-014 — Depends: T021, T022
+  - [ ] **PREP**: Ler migrations aplicadas.
+  - [ ] **EXECUTE**: Registrar tabelas, campos, relações e retenção.
+  - [ ] **VERIFY**: `node .agents/skills/specsfy-setup/scripts/monitor_context.mjs --project . --check`.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa não é documentação.
+  - [ ] **EVIDENCE**: Registrar resultado do monitor.
+  - [ ] **IMPROVE**: Registrar ou nenhuma.
+
+- [ ] T034 [DOC] [US-001] Registrar blocos React em INTERFACE.md e dependência ReUI/TanStack em .specsfy/STACK.md — Refs: US-001, FR-007, NFR-002, AC-018, AC-019 — Depends: T029, T030, T031, T032
+  - [ ] **PREP**: Ler componentes criados.
+  - [ ] **EXECUTE**: Registrar arquivo, origem, consumidores e regra de reuso de cada bloco.
+  - [ ] **VERIFY**: `monitor_context.mjs --check` CURRENT.
+  - [ ] **VISUAL**: Registrar `Não aplicável` porque a tarefa é documentação.
+  - [ ] **EVIDENCE**: Registrar resultado.
+  - [ ] **IMPROVE**: Registrar ou nenhuma.
+
+- [ ] T035 [TEST] [US-003] Executar regressão completa em tests/Feature e checks estáticos — Refs: US-001, US-002, US-003, FR-001, FR-007, NFR-001, NFR-002, AC-001, AC-018 — Depends: T023, T024, T025, T026, T027, T028, T029, T030, T031, T032, T033, T034
+  - [ ] **PREP**: Identificar suites e gates.
+  - [ ] **EXECUTE**: Rodar `php artisan test`, `npx tsc --noEmit`, `npm run lint`, `npm run build` e `check_traceability.mjs`.
+  - [ ] **VERIFY**: Todos verdes; nenhum `RefreshDatabase`.
+  - [ ] **VISUAL**: Conferir bordas, espaçamentos, margens, padding e tipografia (família, peso, tamanho, altura de linha, quebra) em 1440px e 390px, estados vazio/dados/erro/sem permissão, foco e teclado. Conferência final antes da aprovação do responsável.
+  - [ ] **EVIDENCE**: Registrar contagens e comandos.
+  - [ ] **IMPROVE**: Retrospectiva do processo.
 
 ### 15. Ordem de execução
 
-- Definida por `$specsfy-05-tasks`.
+- Caminho crítico: T001–T020 (RED) → T021/T022 → T023, T024, T025, T027 → T026, T028 → T029 → T030 → T031, T032 → T033, T034 → T035.
+- Tarefas paralelas: T001–T020 entre si (arquivos de teste independentes); T021 e T022.
+- Estratégia de MVP: fatia inteira; US-003 (acesso) é pré-requisito das demais telas.
 
 ## Ato III — Entregar e validar
 

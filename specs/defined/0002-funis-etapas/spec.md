@@ -12,7 +12,7 @@
 | ClickUp Task | |
 | Milestones | Núcleo (MVP) — fatia 2 |
 | Definition Gate | Passed |
-| Plan Gate | Passed |
+| Plan Gate | Pending |
 | Delivery Gate | Pending |
 | Evidence Contract | 1 |
 | Interface para pessoas | Sim — adm configura funis e etapas; gestor consulta |
@@ -558,7 +558,7 @@ tests/Feature/{FunnelTest,StageTest}.php
 
 #### Gate do Ato II — Plano
 
-- **Resultado**: Passed (2026-09-27)
+- **Resultado**: Pending (estrutura válida; passa a Passed quando T001–T014 estiverem em RED)
 - **Comando**: `node .agents/skills/specsfy-05-tasks/scripts/validate_tasks.mjs specs/defined/0002-funis-etapas/spec.md`
 - **Achados**: 23 tarefas, 14 RED antes do código; sem erros.
 

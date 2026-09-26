@@ -11,7 +11,7 @@
 | Prioridade | Alta — fatia 1, desbloqueia todo o núcleo |
 | Milestones | |
 | Criado em | 2026-09-26 |
-| Spec promovida | specs/draft/0001-acesso-adm-gestores/spec.md |
+| Spec promovida | specs/defined/0001-acesso-adm-gestores/spec.md |
 
 ## Ideia original
 

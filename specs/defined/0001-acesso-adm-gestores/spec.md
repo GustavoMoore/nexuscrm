@@ -5,13 +5,13 @@
 | Formato | Specsfy/2.0 |
 | ID | SPEC-0001 |
 | Slug | 0001-acesso-adm-gestores |
-| Status | Draft |
+| Status | Defined |
 | Effort | 5 |
 | Effort updated at | 2026-09-26 |
 | Effort rationale | Autenticação e autorização por papel e por projeto, 3 telas com painel lateral, remoção de rotas do starter kit; sem integração externa. |
 | ClickUp Task | |
 | Milestones | Núcleo (MVP) — fatia 1 |
-| Definition Gate | Pending |
+| Definition Gate | Passed |
 | Plan Gate | Pending |
 | Delivery Gate | Pending |
 | Evidence Contract | 1 |
@@ -69,6 +69,10 @@ qual funis, quadro e agenda serão construídos.
 #### Dúvidas abertas
 
 - Nenhuma.
+
+#### Revisão independente (lane review, Claude, read-only, 2026-09-26)
+
+- Veredito: APROVAR COM AJUSTES; 0 P1. FIND-SEC-001..005, FIND-ARCH-001..004, FIND-PROD-001..006 incorporados nesta versão (sessões encerradas na redefinição, `attemptWhen`, campos fora de `$fillable`, e-mail minúsculo, validação de `user_ids`, inativos preservados, arquivos do starter kit a ajustar, flash com `Alert`, `aria-current`, ACs de UI reescritos como props Inertia + VISUAL manual, sheet único). FIND-ARCH-005 registrado em DEC-004.
 
 ### 3. Escopo e atores
 
@@ -144,7 +148,7 @@ Feature: Sem cadastro aberto
     Given um visitante não autenticado
     When ele acessa GET /register ou envia POST /register
     Then recebe 404
-    And a tela de login não exibe link de cadastro nem de "esqueci minha senha"
+    And as rotas nomeadas register, password.request e password.reset não existem (Route::has falso)
 ```
 
 #### AC-002 — Não existe autoexclusão de conta
@@ -160,7 +164,7 @@ Feature: Conta só é desativada pelo adm
     When ele envia DELETE /settings/profile
     Then a requisição é rejeitada com 404 ou 405
     And a conta continua existindo
-    And a tela de perfil não exibe a seção "Apagar conta"
+    And a rota nomeada profile.destroy não existe
 ```
 
 #### AC-003 — Não existe recuperação de senha por e-mail
@@ -189,7 +193,8 @@ Feature: Criar gestor
     Given o adm autenticado na tela Usuários
     When ele abre o painel "Novo gestor" e envia nome, e-mail e senha provisória com 8+ caracteres
     Then o gestor aparece na lista como Ativo
-    And o gestor tem papel gestor, e-mail verificado e troca de senha pendente
+    And o gestor tem papel gestor e troca de senha pendente
+    And o e-mail é gravado em minúsculas
 ```
 
 #### AC-005 — E-mail duplicado é recusado no campo
@@ -204,8 +209,12 @@ Feature: Validação do cadastro de gestor
     Given já existe um usuário com e-mail ana@cliente.com
     When o adm tenta criar outro gestor com ana@cliente.com
     Then nenhum usuário é criado
-    And o painel continua aberto com o erro ligado ao campo e-mail (aria-describedby)
-    And o foco vai para o primeiro campo com erro
+    And a resposta traz erro de validação no campo email
+
+  Scenario: E-mail igual com maiúsculas diferentes
+    Given já existe ana@cliente.com
+    When o adm tenta criar gestor com Ana@Cliente.com
+    Then nenhum usuário é criado e há erro no campo email
 ```
 
 #### AC-006 — Adm redefine senha provisória
@@ -221,6 +230,7 @@ Feature: Redefinir senha
     When o adm define uma nova senha provisória para ele
     Then o gestor entra com a nova senha
     And é obrigado a trocá-la antes de usar qualquer tela
+    And sessões abertas do gestor feitas antes da redefinição são encerradas
 ```
 
 #### AC-007 — Troca obrigatória bloqueia o resto do sistema
@@ -233,7 +243,7 @@ Feature: Primeiro acesso
 
   Scenario: Gestor com senha provisória navega
     Given um gestor autenticado com troca de senha pendente
-    When ele acessa /agenda, /projetos ou qualquer rota autenticada
+    When ele acessa cada rota GET registrada com middleware auth
     Then é redirecionado para /trocar-senha
     And apenas /trocar-senha e logout respondem normalmente
 ```
@@ -253,7 +263,8 @@ Feature: Concluir troca de senha
     And ele é levado para Minha agenda
 
   Scenario: Nova senha igual à provisória
-    When ele envia a mesma senha provisória
+    Given um gestor em /trocar-senha com a senha provisória "provisoria1"
+    When ele envia "provisoria1" como nova senha
     Then a troca é recusada com erro no campo
 ```
 
@@ -269,6 +280,7 @@ Feature: Desativar gestor
     Given o adm desativou o gestor Bruno
     When Bruno tenta entrar com e-mail e senha corretos
     Then o login falha com a mensagem "Conta desativada. Fale com o administrador."
+    And nenhuma sessão autenticada nem cookie "lembrar-me" é criado
     And após o adm reativar Bruno, ele volta a entrar
 ```
 
@@ -298,7 +310,7 @@ Feature: Proteção do adm
     Given o adm autenticado
     When ele envia a desativação da própria conta
     Then a ação é recusada com 403
-    And a lista não oferece "Desativar" na linha do próprio adm
+    And a linha do próprio adm chega à tela com can.deactivate falso
 ```
 
 #### AC-012 — Adm cria projeto e atribui gestores
@@ -357,7 +369,7 @@ Feature: Lista de projetos do gestor
     Given Ana atende "Mentoria X" e Bruno atende "Imersão Y"
     When Ana abre Projetos
     Then vê somente "Mentoria X"
-    And não vê botões de criar, editar ou arquivar
+    And a página recebe can.create, can.update e can.archive falsos
 ```
 
 #### AC-016 — URL de projeto alheio é negada
@@ -385,7 +397,7 @@ Feature: Menu por papel
   Scenario: Gestor tenta administrar usuários
     Given Ana autenticada como gestora
     When ela olha o menu lateral e acessa /usuarios diretamente
-    Then o menu não mostra "Usuários"
+    Then as props compartilhadas trazem auth.user.is_adm falso (o menu esconde "Usuários")
     And /usuarios responde 403
 ```
 
@@ -401,9 +413,9 @@ Feature: Navegação principal
     Given um usuário autenticado sem troca pendente
     When ele acessa /
     Then é levado para /agenda
-    And o menu mostra "Nexus", "Minha agenda", "Projetos" e, só para adm, "Usuários"
-    And a agenda mostra o estado vazio "Nenhum negócio ainda"
-    And o item de menu da página atual tem aria-current="page"
+    And a página Inertia renderizada é "agenda"
+    And as props compartilhadas trazem name "Nexus" e auth.user.is_adm conforme o papel
+    And a verificação visual confirma o menu com aria-current="page" no item atual
 ```
 
 #### AC-019 — Painel lateral acessível por teclado
@@ -419,6 +431,8 @@ Feature: Painel lateral
     When ele ativa "Novo gestor" pelo teclado
     Then o painel abre com foco no campo nome e o foco fica preso no painel
     And Esc fecha o painel e devolve o foco ao botão "Novo gestor"
+    And campos com erro têm aria-invalid e aria-describedby apontando para a mensagem
+    # Verificação: manual por teclado, registrada no item VISUAL (sem teste de navegador nesta fatia)
 ```
 
 #### AC-020 — Gestor não cria nem altera projeto por requisição direta
@@ -440,10 +454,10 @@ Feature: Escrita de projeto só pelo adm
 #### Funcionais
 
 - **FR-001**: O sistema não deve expor cadastro público, recuperação de senha por e-mail, verificação de e-mail nem autoexclusão de conta; as rotas e telas correspondentes são removidas.
-- **FR-002**: O adm deve criar e editar gestores (nome, e-mail único, senha provisória ≥ 8) e redefinir a senha provisória; todo gestor criado ou redefinido fica com troca de senha pendente e e-mail marcado como verificado.
+- **FR-002**: O adm deve criar e editar gestores (nome, e-mail único em minúsculas, senha provisória ≥ 8) e redefinir a senha provisória; cada gestor criado ou redefinido fica com troca de senha pendente e perde as sessões abertas. `role`, `deactivated_at` e `must_change_password` ficam fora de `$fillable` e só são gravados com `forceFill` nos controllers do adm. O gestor edita no próprio perfil apenas o nome; e-mail de login só o adm muda.
 - **FR-003**: Usuário com troca pendente deve ser redirecionado a `/trocar-senha` em toda rota autenticada, exceto essa e logout; a nova senha precisa de confirmação e ser diferente da atual.
-- **FR-004**: O adm deve desativar e reativar gestores; conta desativada não autentica, sessão aberta é encerrada na próxima requisição, e o adm não desativa a si mesmo.
-- **FR-005**: O adm deve criar, renomear, arquivar e desarquivar projetos (nome obrigatório, único sem diferenciar maiúsculas) e definir os gestores atendentes; gestores não escrevem em projetos.
+- **FR-004**: O adm deve desativar e reativar gestores; conta desativada não autentica (`Auth::attemptWhen`, sem criar sessão nem cookie), sessão aberta é encerrada na próxima requisição, e o adm não desativa a si mesmo.
+- **FR-005**: O adm deve criar, renomear, arquivar e desarquivar projetos (nome obrigatório, único sem diferenciar maiúsculas) e definir os gestores atendentes (`user_ids` validados como gestores existentes; gestores inativos já atribuídos são preservados ao salvar); gestores não escrevem em projetos.
 - **FR-006**: O gestor deve listar e abrir somente projetos ativos atribuídos a ele; o adm lista todos, com filtro Ativos/Arquivados; a área Usuários é exclusiva do adm.
 - **FR-007**: O shell deve exibir "Nexus" em texto e o menu Minha agenda (`/agenda`), Projetos (`/projetos`) e Usuários (`/usuarios`, só adm); `/` redireciona para `/agenda` autenticado ou `/login` visitante; criar/editar abre em painel lateral.
 
@@ -457,9 +471,9 @@ Feature: Escrita de projeto só pelo adm
 - E-mail duplicado ao criar/editar gestor → erro no campo, painel permanece aberto.
 - Senha provisória < 8 caracteres → erro no campo.
 - Gestor desativado com sessão aberta → deslogado na próxima requisição.
-- Adm tenta se desativar ou mudar o próprio papel → 403.
+- Adm tenta se desativar → 403.
 - Projeto sem gestores → permitido (só o adm o vê até atribuir).
-- Gestor desativado continua listado como atendente do projeto, marcado "Inativo", e não conta como acesso.
+- Gestor desativado continua atendente do projeto, aparece marcado "Inativo" e desabilitado no painel, e não é removido ao salvar.
 
 ## Ato II — Projetar e provar
 
@@ -474,7 +488,9 @@ Feature: Escrita de projeto só pelo adm
 - Papel em `users.role` (`adm`|`gestor`); helper `User::isAdm()`.
 - `Gate::define('adm', fn (User $u) => $u->isAdm())` em `AppServiceProvider`; `ProjectPolicy` (`view`: adm ou atribuído e não arquivado; escrita: adm).
 - Middleware `EnsurePasswordChanged` (redireciona para `/trocar-senha`) e checagem de desativado no mesmo middleware (logout + redirect login), registrados no grupo `web` em `bootstrap/app.php`.
-- Login: `LoginRequest::authenticate` recusa `deactivated_at` não nulo com a mensagem do AC-009.
+- Login: `LoginRequest::authenticate` usa `Auth::attemptWhen($cred, fn ($u) => $u->isActive(), $remember)`; se as credenciais forem válidas mas a conta estiver desativada, lança a mensagem do AC-009.
+- Sessões: `SESSION_DRIVER=database`; ao redefinir senha ou desativar, apagar as linhas do usuário em `sessions` e girar `remember_token`.
+- E-mail normalizado com regra `lowercase` + `unique` no store/update do adm.
 - Primeiro adm: comando Artisan `nexus:criar-adm` em `routes/console.php` (pergunta nome, e-mail, senha). `DatabaseSeeder` cria `adm@nexus.test` e `gestor@nexus.test` (senha `password`) só em `APP_ENV=local`.
 
 #### Migrations
@@ -495,15 +511,19 @@ Feature: Escrita de projeto só pelo adm
 - `ProjectController` (`app/Http/Controllers/ProjectController.php`): `index`, `show` (Policy view), `store`, `update` (nome + gestores), `archive`, `unarchive` (Policy/adm).
 - `PasswordChangeController`: `edit`, `update` em `/trocar-senha`.
 - `/agenda`: `Inertia::render('agenda')` com estado vazio.
-- Remover `RegisteredUserController`, `PasswordResetLinkController`, `NewPasswordController`, `EmailVerification*`, `VerifyEmailController` e suas rotas; remover `destroy` de `ProfileController` e a rota.
+- Remover `RegisteredUserController`, `PasswordResetLinkController`, `NewPasswordController`, `EmailVerification*`, `VerifyEmailController`, `ConfirmablePasswordController` e suas rotas; remover `destroy` de `ProfileController` e a rota; `ProfileUpdateRequest`/`ProfileController` passam a aceitar só `name` (remover a linha que zera `email_verified_at`).
+- Trocar referências a `dashboard`/`/dashboard` por `agenda`: `AuthenticatedSessionController.php` (redirect pós-login), `app-header.tsx`, `app-sidebar.tsx`. Manter a rota nomeada `home` em `/` (usada pelos layouts de auth) redirecionando para `/agenda` ou `/login`.
+- `HandleInertiaRequests::share`: `name` = config('app.name') ("Nexus"), `auth.user.is_adm`, `flash.success`.
 
 #### Views e experiência
 
 - Páginas: `pages/agenda.tsx`, `pages/projetos/index.tsx`, `pages/projetos/show.tsx`, `pages/usuarios/index.tsx`, `pages/auth/trocar-senha.tsx`.
-- Remover: `pages/welcome.tsx`, `pages/dashboard.tsx`, `pages/auth/register.tsx`, `forgot-password.tsx`, `reset-password.tsx`, `verify-email.tsx`, `components/delete-user.tsx`.
+- Remover: `pages/welcome.tsx`, `pages/dashboard.tsx`, `pages/auth/register.tsx`, `forgot-password.tsx`, `reset-password.tsx`, `verify-email.tsx`, `confirm-password.tsx`, `components/delete-user.tsx`.
+- Ajustar: `pages/auth/login.tsx` (tirar links de cadastro e recuperação), `pages/settings/profile.tsx` (tirar e-mail editável, reenvio de verificação e "Apagar conta"), `components/nav-main.tsx` (`aria-current="page"` e ativo por prefixo de URL), `components/input-error.tsx` (aceitar `id` para `aria-describedby`).
 
 #### Queries e repositórios
 
+- Feedback de sucesso: `flash.success` compartilhado pelo Inertia e exibido com `Alert` do shadcn no topo do conteúdo (sem biblioteca de toast nova).
 - `Project::visibleTo($user)`: adm → todos (filtro por `archived_at`); gestor → `whereNull('archived_at')->whereHas('users', id)`. Volume baixo; sem paginação nesta fatia.
 
 #### Jobs e processamento assíncrono
@@ -513,7 +533,7 @@ Feature: Escrita de projeto só pelo adm
 #### Estrutura de arquivos
 
 ```text
-specs/draft/0001-acesso-adm-gestores/spec.md
+specs/defined/0001-acesso-adm-gestores/spec.md
 app/Http/Controllers/{UserController,ProjectController,PasswordChangeController}.php
 app/Http/Middleware/EnsurePasswordChanged.php
 app/Models/Project.php
@@ -522,7 +542,7 @@ database/migrations/*_add_role_and_status_to_users_table.php
 database/migrations/*_create_projects_table.php
 database/migrations/*_create_project_user_table.php
 resources/js/pages/{agenda,projetos/index,projetos/show,usuarios/index,auth/trocar-senha}.tsx
-resources/js/components/{page-header,user-form-sheet,project-form-sheet}.tsx
+resources/js/components/{page-header,user-form-sheet,project-form-sheet,confirm-dialog,empty-state,flash-message}.tsx
 resources/js/components/reui/data-grid*.tsx
 tests/Feature/{AccessTest,UserManagementTest,ProjectTest}.php
 ```
@@ -586,9 +606,9 @@ tests/Feature/{AccessTest,UserManagementTest,ProjectTest}.php
 #### Formulários e ações
 
 - **Gestor** (painel lateral): Nome (obrigatório), E-mail (obrigatório, único), Senha provisória (obrigatória ao criar, ≥ 8; oculta ao editar). Ação "Salvar".
-- **Redefinir senha** (painel lateral): Nova senha provisória (≥ 8). Ação "Redefinir".
+- **Redefinir senha** (mesmo painel do gestor, modo redefinir): Nova senha provisória (≥ 8). Ação "Redefinir".
 - **Desativar/Reativar**: ação direta da linha com modal de confirmação ("Bruno não poderá mais entrar.").
-- **Projeto** (painel lateral): Nome (obrigatório, único), Gestores (checkboxes com gestores ativos). Ação "Salvar".
+- **Projeto** (painel lateral): Nome (obrigatório, único), Gestores (checkboxes com gestores ativos; inativos já atribuídos aparecem marcados, desabilitados e com rótulo "Inativo"). Ação "Salvar".
 - **Arquivar/Desarquivar**: ação da linha com modal de confirmação.
 - **Trocar senha** (página): Nova senha, Confirmar senha.
 - Erros sempre no campo (`InputError`), painel permanece aberto.
@@ -605,8 +625,8 @@ tests/Feature/{AccessTest,UserManagementTest,ProjectTest}.php
 | --- | --- | --- | --- | --- | --- | --- |
 | Todas | PageHeader | título, descrição, ação primária | `components/page-header.tsx` | `Heading` + `Button` | próprio | novo, único para todas as telas |
 | Projetos, Usuários | DataGrid | tabela em largura total | `components/reui/data-grid*.tsx` | `@reui/data-grid` | ReUI | novo, instalado via shadcn |
-| Usuários | UserFormSheet | criar/editar gestor | `components/user-form-sheet.tsx` | `Sheet`, `Input`, `Label`, `InputError` | shadcn/ui | novo |
-| Usuários | PasswordResetSheet | redefinir senha | `components/password-reset-sheet.tsx` | `Sheet`, `Input` | shadcn/ui | novo |
+| Usuários | UserFormSheet | criar/editar gestor e redefinir senha (modo) | `components/user-form-sheet.tsx` | `Sheet`, `Input`, `Label`, `InputError` | shadcn/ui | novo |
+| Todas | FlashMessage | feedback de sucesso | `components/flash-message.tsx` | `Alert` | shadcn/ui | novo |
 | Projetos | ProjectFormSheet | criar/editar projeto e gestores | `components/project-form-sheet.tsx` | `Sheet`, `Input`, `Checkbox` | shadcn/ui | novo |
 | Projetos, Usuários | ConfirmDialog | confirmar desativar/arquivar | `components/confirm-dialog.tsx` | `Dialog` | shadcn/ui | novo |
 | Todas | AppSidebar | menu por papel | `components/app-sidebar.tsx` | `Sidebar` | starter kit | extensão |
@@ -620,7 +640,7 @@ tests/Feature/{AccessTest,UserManagementTest,ProjectTest}.php
 - Loading: botão "Salvar" desabilitado com `processing` do `useForm`.
 - Vazio: Projetos sem itens → "Nenhum projeto ainda" (adm vê botão "Novo projeto"; gestor vê "Nenhum projeto atribuído a você"). Agenda → "Nenhum negócio ainda".
 - Erro: mensagens no campo com `aria-describedby`; foco no primeiro campo com erro.
-- Sucesso: toast/flash "Gestor criado", "Projeto arquivado" etc.
+- Sucesso: mensagem `Alert` via flash "Gestor criado", "Projeto arquivado" etc.
 - Permissão insuficiente: página 403 padrão com link para Minha agenda.
 - Teclado: painel com foco preso, Esc fecha e devolve foco; linha da tabela é link focável; status Ativo/Inativo em `Badge` com texto (não só cor).
 - O `Breadcrumb` usa links nos itens anteriores e `aria-current="page"` no atual.
@@ -634,7 +654,7 @@ tests/Feature/{AccessTest,UserManagementTest,ProjectTest}.php
 #### Revisão visual durante o desenvolvimento
 
 - Durante a implementação e no Delivery Gate, conferir em 1440px e 390px, nos estados vazio, com dados, erro de validação e sem permissão: bordas, espaçamentos, margens, padding e tipografia (família, peso, tamanho, altura de linha, quebra de texto), alinhamento, overflow, foco, conteúdo curto e longo (nome de projeto com 80 caracteres).
-- Registrar método, viewport, estados, achados e ajustes em cada tarefa com interface; tarefas sem interface registram `Não aplicável` com motivo.
+- Registrar a forma de conferência, viewport, estados, achados e ajustes em cada tarefa com interface; tarefas sem interface registram `Não aplicável` com motivo.
 
 #### APIs expostas
 
@@ -654,11 +674,11 @@ tests/Feature/{AccessTest,UserManagementTest,ProjectTest}.php
 
 ### 11. Estratégia TDD
 
-- **Unidade**: `Project::visibleTo`, `User::isAdm/isActive`.
-- **Integração/contrato**: testes HTTP Pest por rota e papel (403/404/redirect/422).
+- **Unidade**: `Project::visibleTo` (adm, gestor atribuído, gestor não atribuído, projeto arquivado).
+- **Integração/contrato**: testes HTTP Pest por rota e papel (403/404/redirect/422) e asserções de props Inertia (`assertInertia`: componente, `can.*`, `auth.user.is_adm`, `name`).
 - **BDD/aceite**: Gherkin da seção 6 orienta os casos TDD; sem arquivos `.feature`.
 - **Runner TDD**: Pest em `nexuscrm_test`.
-- **E2E**: Não aplicável nesta fatia; a jornada é validada pelos testes HTTP e pela aprovação visual do responsável em localhost.
+- **E2E**: Não aplicável nesta fatia (sem teste de navegador); foco, Esc, aria-current e aria-describedby são verificados manualmente no item VISUAL, e a jornada é aprovada pelo responsável em localhost.
 - **Verificação manual**: navegação por teclado no painel (NFR-002) e aprovação visual do responsável.
 
 #### Evidência RED-GREEN-REFACTOR
@@ -673,20 +693,20 @@ tests/Feature/{AccessTest,UserManagementTest,ProjectTest}.php
 
 #### Gate do Ato I — Definição
 
-- **Resultado**: Pending
-- **Comando**: `node .agents/skills/specsfy-04-validate/scripts/validate_spec.mjs specs/draft/0001-acesso-adm-gestores/spec.md`
-- **Achados**: Pending.
+- **Resultado**: Passed (2026-09-26)
+- **Comando**: `node .agents/skills/specsfy-04-validate/scripts/validate_spec.mjs specs/defined/0001-acesso-adm-gestores/spec.md`
+- **Achados**: validação estrutural sem erros; revisão semântica independente (lane review) sem P1, 15 achados P2/P3 incorporados (ver seção 2); aprovação do responsável em 2026-09-26.
 
 #### Gate do Ato II — Plano
 
 - **Resultado**: Pending
-- **Comando**: `node .agents/skills/specsfy-05-tasks/scripts/validate_tasks.mjs specs/draft/0001-acesso-adm-gestores/spec.md`
+- **Comando**: `node .agents/skills/specsfy-05-tasks/scripts/validate_tasks.mjs specs/defined/0001-acesso-adm-gestores/spec.md`
 - **Achados**: Pending.
 
 #### Gate do Ato III — Entrega
 
 - **Resultado**: Pending
-- **Comando**: `node .agents/skills/specsfy-06-tdd-bdd/scripts/check_traceability.mjs specs/draft/0001-acesso-adm-gestores/spec.md .`
+- **Comando**: `node .agents/skills/specsfy-06-tdd-bdd/scripts/check_traceability.mjs specs/defined/0001-acesso-adm-gestores/spec.md .`
 - **Achados**: Pending.
 
 ### 14. Tarefas
@@ -716,6 +736,7 @@ tests/Feature/{AccessTest,UserManagementTest,ProjectTest}.php
 - Menu lateral Minha agenda / Projetos / Usuários (assumido, sem objeção do responsável).
 - Um único adm; o papel não é editável pela tela.
 - Senha provisória mínima de 8 caracteres.
+- Gestor não altera o próprio e-mail (DEC-006).
 - URLs em português.
 
 ### 17. Decisões
@@ -723,8 +744,9 @@ tests/Feature/{AccessTest,UserManagementTest,ProjectTest}.php
 - **DEC-001**: Papel como coluna `role` em `users` — 2 papéis fixos; pacote de permissões seria excesso. Trocar se surgirem papéis configuráveis.
 - **DEC-002**: Desativar/arquivar em vez de apagar — preserva autoria e histórico; decisão do responsável (2026-09-26).
 - **DEC-003**: Senha provisória + troca obrigatória, sem e-mail — decisão do responsável; convite por e-mail entra quando houver serviço de envio.
-- **DEC-004**: Octane/Open Swoole fora desta fatia — contrato Specsfy exige, mas é runtime de produção e depende de compatibilidade com PHP 8.5; spec própria antes do deploy.
-- **DEC-005**: Painel lateral para criar/editar em todo o produto — decisão do responsável (2026-09-26).
+- **DEC-004**: Octane/Open Swoole fora desta fatia — contrato Specsfy exige, mas é runtime de produção e depende de compatibilidade com PHP 8.5; spec própria antes do deploy. Aceito pelo responsável ao aprovar a spec (2026-09-26).
+- **DEC-006**: Gestor edita no perfil só o nome; e-mail de login é alterado pelo adm — default assumido pela revisão (FIND-PROD-005), o login é a identidade controlada pelo adm.
+- **DEC-005**: Painel lateral para criar/editar no produto inteiro — decisão do responsável (2026-09-26).
 
 ### 18. Definition of Done
 

@@ -79,3 +79,18 @@ vazio, upload ou ação em lote.
   remover um bloco, atualize seus consumidores e a orientação de reuso.
 
 <!-- markdownlint-enable MD013 -->
+
+## SPEC-0001 — blocos e telas implementados
+
+| Bloco | Arquivo | Origem | Consumidores / contrato |
+| --- | --- | --- | --- |
+| PageHeader | `resources/js/components/page-header.tsx` | próprio | Agenda, Usuários, Projetos e detalhe; título, descrição e ação |
+| EmptyState | `resources/js/components/empty-state.tsx` | próprio | Agenda, listas e detalhe; título, descrição e ação opcional |
+| FlashMessage | `resources/js/components/flash-message.tsx` | shadcn Alert | Telas internas; `flash.success` compartilhado pelo Inertia |
+| UserFormSheet | `resources/js/components/user-form-sheet.tsx` | shadcn Sheet/Input | Usuários; criar, editar e redefinir com foco inicial e erros associados |
+| ProjectFormSheet | `resources/js/components/project-form-sheet.tsx` | shadcn Sheet/Checkbox | Projetos; nome e gestores, inativos atribuídos desabilitados |
+| ConfirmDialog | `resources/js/components/confirm-dialog.tsx` | shadcn Dialog | Usuários e Projetos; confirmar desativar/arquivar |
+| Table | `resources/js/components/ui/table.tsx` | fallback shadcn local | Usuários e Projetos; coluna ID e ações acessíveis |
+| AppSidebar, AppHeader, NavMain | `resources/js/components/{app-sidebar,app-header,nav-main}.tsx` | starter kit adaptado | Shell; menu por papel, item ativo e `aria-current` |
+
+Telas: `/agenda` (`pages/agenda.tsx`), `/usuarios` (`pages/usuarios/index.tsx`), `/projetos` (`pages/projetos/index.tsx`), `/projetos/{id}` (`pages/projetos/show.tsx`), `/trocar-senha` (`pages/auth/trocar-senha.tsx`). As listas mostram vazio ou dados; erros de formulário ficam junto ao campo. O registry ReUI e `shadcn add table` não responderam em 60 s/20 s neste ambiente; a tabela usa código local equivalente à primitive shadcn sem pacote novo.

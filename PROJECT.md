@@ -27,3 +27,7 @@ Modelo inicial sugerido a partir de: **Laravel**. Detalhes verificáveis
 ficam em `.specsfy/STACK.md` e `.specsfy/DATABASE.md`.
 
 Para Laravel, descreva módulos de domínio, fronteiras HTTP/console e use `database/migrations` como primeira evidência do mapa de dados.
+
+## Evolução da primeira fatia
+
+A SPEC-0001 define o acesso inicial: o administrador cria e desativa gestores, administra projetos e atribuições, e gestores acessam apenas projetos ativos atribuídos. A interface inclui login, troca de senha provisória, Minha agenda vazia, Usuários, Projetos e detalhe com estado vazio de funis. Cadastro público, recuperação de senha por e-mail e autoexclusão foram removidos do código. A efetivação no banco e a verificação funcional dependem de restabelecer a conexão Postgres local; consulte a evidência de execução da entrega.

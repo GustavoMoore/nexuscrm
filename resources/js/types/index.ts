@@ -24,12 +24,14 @@ export interface NavItem {
 export interface SharedData {
     name: string;
     quote: { message: string; author: string };
+    flash: { success?: string | null };
     auth: Auth;
     [key: string]: unknown;
 }
 
 export interface User {
     id: number;
+    is_adm?: boolean;
     name: string;
     email: string;
     avatar?: string;

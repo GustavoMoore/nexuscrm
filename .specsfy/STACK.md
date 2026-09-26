@@ -37,3 +37,7 @@ não bloqueia o desenvolvimento local.
 
 Segurança obrigatória no Supabase: desligar a Data API (PostgREST) ou revogar
 `anon`/`authenticated` do schema `public` — as tabelas Laravel não têm RLS.
+
+## SPEC-0001 — componentes de tabela
+
+`@reui/data-grid` e TanStack Table não foram instalados: o comando `npx shadcn@latest add @reui/data-grid --yes` expirou após 60 s sem resposta. O fallback `npx shadcn@latest add table --yes` expirou após 20 s. `resources/js/components/ui/table.tsx` implementa localmente a primitive Table do padrão shadcn, sem dependência adicional.

@@ -1,0 +1,857 @@
+
+   FAIL  AccessTest
+  ⨯ a c 001 não oferece cadastro público                                 0.45s  
+  ⨯ a c 002 impede autoexclusão                                          0.06s  
+  ⨯ a c 003 não oferece recuperação por email                            0.26s  
+  ⨯ a c 007 obriga troca antes de navegar                                0.04s  
+  ⨯ a c 008 troca senha provisória por senha diferente                   0.04s  
+  ⨯ a c 009 recusa login desativado e aceita após reativação             0.05s  
+  ⨯ a c 010 encerra acesso na próxima requisição após desativar          0.04s  
+  ⨯ a c 017 nega usuários ao gestor e compartilha papel                  0.04s  
+  ⨯ a c 018 redireciona home à agenda e compartilha nexus                0.29s  
+
+   FAIL  UserManagementTest
+  ⨯ a c 004 adm cria gestor com senha provisória                         0.07s  
+  ⨯ a c 005 rejeita email duplicado sem diferenciar maiúsculas           0.04s  
+  ⨯ a c 006 redefine senha e revoga sessões                              0.04s  
+  ⨯ a c 011 adm não se desativa                                          0.03s  
+  ⨯ a c 019 fornece tela e dados para painel lateral de gestores         0.03s  
+
+   FAIL  ProjectTest
+  ⨯ a c 012 adm cria e altera atribuição de projeto                      0.06s  
+  ⨯ a c 013 arquivado some do gestor e pode ser desarquivado             0.03s  
+  ⨯ a c 014 exige nome único de projeto sem diferenciar caixa            0.03s  
+  ⨯ a c 015 gestor vê apenas projetos atribuídos                         0.03s  
+  ⨯ a c 016 nega u r l de projeto alheio                                 0.03s  
+  ⨯ a c 020 gestor não escreve por requisição direta                     0.03s  
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  AccessTest > a c 001 não oferece cadastro público                    
+  Expected response status code [404] but received 500.
+Failed asserting that 500 is identical to 404.
+
+The following exception occurred during the last request:
+
+Illuminate\Foundation\ViteManifestNotFoundException: Vite manifest not found at: /home/Guzaum/.hermes/cache/scratch/red-wt/public/build/manifest.json in /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php:946
+Stack trace:
+#0 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php(384): Illuminate\Foundation\Vite->manifest()
+#1 /home/Guzaum/.hermes/cache/scratch/red-wt/storage/framework/views/4ddfa7c104313de85614c4b0ac806042.php(14): Illuminate\Foundation\Vite->__invoke()
+#2 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('...')
+#3 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+#4 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire()
+#5 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(76): Illuminate\View\Engines\PhpEngine->evaluatePath()
+#6 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\View\Engines\CompilerEngine->get()
+#7 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\View\View->getContents()
+#8 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\View\View->renderContents()
+#9 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Response.php(78): Illuminate\View\View->render()
+#10 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Response.php(34): Illuminate\Http\Response->setContent()
+#11 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(61): Illuminate\Http\Response->__construct()
+#12 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(91): Illuminate\Routing\ResponseFactory->make()
+#13 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(363): Illuminate\Routing\ResponseFactory->view()
+#14 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/inertiajs/inertia-laravel/src/Response.php(219): Illuminate\Support\Facades\Facade::__callStatic()
+#15 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(921): Inertia\Response->toResponse()
+#16 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(906): Illuminate\Routing\Router::toResponse()
+#17 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Routing\Router->prepareResponse()
+#18 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}()
+#19 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Auth/Middleware/RedirectIfAuthenticated.php(47): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#20 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Auth\Middleware\RedirectIfAuthenticated->handle()
+#21 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/AddLinkHeadersForPreloadedAssets.php(32): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#22 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets->handle()
+#23 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/inertiajs/inertia-laravel/src/Middleware.php(122): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#24 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Inertia\Middleware->handle()
+#25 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#26 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle()
+#27 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(87): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#28 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle()
+#29 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#30 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle()
+#31 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#32 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#33 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle()
+#34 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#35 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#36 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#37 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#38 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#39 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Pipeline\Pipeline->then()
+#40 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\Routing\Router->runRouteWithinStack()
+#41 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\Routing\Router->runRoute()
+#42 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\Routing\Router->dispatchToRoute()
+#43 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\Routing\Router->dispatch()
+#44 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}()
+#45 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#46 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#47 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#48 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#49 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#50 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#51 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#52 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#53 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#54 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#55 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#56 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle()
+#57 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#58 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle()
+#59 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#60 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#61 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#62 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle()
+#63 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#64 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then()
+#65 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#66 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle()
+#67 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call()
+#68 /home/Guzaum/.hermes/cache/scratch/red-wt/tests/Feature/AccessTest.php(16): Illuminate\Foundation\Testing\TestCase->get()
+#69 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(1667): AccessTest->test_AC_001_não_oferece_cadastro_público()
+#70 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#71 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+#72 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(365): PHPUnit\Framework\TestRunner->run()
+#73 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+#74 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+#75 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#76 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/TextUI/Application.php(211): PHPUnit\TextUI\TestRunner->run()
+#77 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run()
+#78 {main}
+
+Next Illuminate\View\ViewException: Vite manifest not found at: /home/Guzaum/.hermes/cache/scratch/red-wt/public/build/manifest.json (View: /home/Guzaum/.hermes/cache/scratch/red-wt/resources/views/app.blade.php) in /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php:946
+Stack trace:
+#0 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(59): Illuminate\View\Engines\CompilerEngine->handleViewException()
+#1 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(76): Illuminate\View\Engines\PhpEngine->evaluatePath()
+#2 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\View\Engines\CompilerEngine->get()
+#3 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\View\View->getContents()
+#4 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\View\View->renderContents()
+#5 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Response.php(78): Illuminate\View\View->render()
+#6 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Response.php(34): Illuminate\Http\Response->setContent()
+#7 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(61): Illuminate\Http\Response->__construct()
+#8 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(91): Illuminate\Routing\ResponseFactory->make()
+#9 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(363): Illuminate\Routing\ResponseFactory->view()
+#10 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/inertiajs/inertia-laravel/src/Response.php(219): Illuminate\Support\Facades\Facade::__callStatic()
+#11 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(921): Inertia\Response->toResponse()
+#12 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(906): Illuminate\Routing\Router::toResponse()
+#13 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Routing\Router->prepareResponse()
+#14 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}()
+#15 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Auth/Middleware/RedirectIfAuthenticated.php(47): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#16 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Auth\Middleware\RedirectIfAuthenticated->handle()
+#17 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/AddLinkHeadersForPreloadedAssets.php(32): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#18 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets->handle()
+#19 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/inertiajs/inertia-laravel/src/Middleware.php(122): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#20 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Inertia\Middleware->handle()
+#21 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#22 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle()
+#23 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(87): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#24 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle()
+#25 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#26 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle()
+#27 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#28 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#29 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle()
+#30 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#31 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#32 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#33 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#34 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#35 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Pipeline\Pipeline->then()
+#36 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\Routing\Router->runRouteWithinStack()
+#37 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\Routing\Router->runRoute()
+#38 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\Routing\Router->dispatchToRoute()
+#39 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\Routing\Router->dispatch()
+#40 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}()
+#41 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#42 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#43 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#44 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#45 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#46 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#47 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#48 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#49 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#50 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#51 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#52 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle()
+#53 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#54 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle()
+#55 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#56 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#57 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#58 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle()
+#59 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#60 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then()
+#61 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#62 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle()
+#63 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call()
+#64 /home/Guzaum/.hermes/cache/scratch/red-wt/tests/Feature/AccessTest.php(16): Illuminate\Foundation\Testing\TestCase->get()
+#65 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(1667): AccessTest->test_AC_001_não_oferece_cadastro_público()
+#66 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#67 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+#68 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(365): PHPUnit\Framework\TestRunner->run()
+#69 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+#70 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+#71 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#72 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/TextUI/Application.php(211): PHPUnit\TextUI\TestRunner->run()
+#73 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run()
+#74 {main}
+
+----------------------------------------------------------------------------------
+
+Vite manifest not found at: /home/Guzaum/.hermes/cache/scratch/red-wt/public/build/manifest.json (View: /home/Guzaum/.hermes/cache/scratch/red-wt/resources/views/app.blade.php)
+
+  at tests/Feature/AccessTest.php:16
+     12▕ 
+     13▕ // SPECSFY: US-003 FR-001 NFR-001
+     14▕ // SPECSFY: AC-001
+     15▕ public function test_AC_001_não_oferece_cadastro_público(): void {
+  ➜  16▕     $this->get('/register')->assertNotFound();
+     17▕     $this->post('/register')->assertNotFound();
+     18▕     $this->assertFalse(Route::has('register')); $this->assertFalse(Route::has('password.request')); $this->assertFalse(Route::has('password.reset'));
+     19▕ }
+     20▕
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  AccessTest > a c 002 impede autoexclusão                             
+  Expected response status code [405] but received 302.
+Failed asserting that 302 is identical to 405.
+
+The following errors occurred during the last request:
+
+The password field is required.
+
+  at tests/Feature/AccessTest.php:25
+     21▕ // SPECSFY: FR-001 NFR-001
+     22▕ // SPECSFY: AC-002
+     23▕ public function test_AC_002_impede_autoexclusão(): void {
+     24▕     $user = User::factory()->create();
+  ➜  25▕     $this->actingAs($user)->delete('/settings/profile')->assertStatus(405);
+     26▕     $this->assertNotNull($user->fresh()); $this->assertFalse(Route::has('profile.destroy'));
+     27▕ }
+     28▕ 
+     29▕ // SPECSFY: FR-001
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  AccessTest > a c 003 não oferece recuperação por email               
+  Expected response status code [404] but received 500.
+Failed asserting that 500 is identical to 404.
+
+The following exception occurred during the last request:
+
+Illuminate\Foundation\ViteManifestNotFoundException: Vite manifest not found at: /home/Guzaum/.hermes/cache/scratch/red-wt/public/build/manifest.json in /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php:946
+Stack trace:
+#0 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php(384): Illuminate\Foundation\Vite->manifest()
+#1 /home/Guzaum/.hermes/cache/scratch/red-wt/storage/framework/views/4ddfa7c104313de85614c4b0ac806042.php(14): Illuminate\Foundation\Vite->__invoke()
+#2 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('...')
+#3 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+#4 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire()
+#5 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(76): Illuminate\View\Engines\PhpEngine->evaluatePath()
+#6 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\View\Engines\CompilerEngine->get()
+#7 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\View\View->getContents()
+#8 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\View\View->renderContents()
+#9 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Response.php(78): Illuminate\View\View->render()
+#10 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Response.php(34): Illuminate\Http\Response->setContent()
+#11 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(61): Illuminate\Http\Response->__construct()
+#12 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(91): Illuminate\Routing\ResponseFactory->make()
+#13 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(363): Illuminate\Routing\ResponseFactory->view()
+#14 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/inertiajs/inertia-laravel/src/Response.php(219): Illuminate\Support\Facades\Facade::__callStatic()
+#15 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(921): Inertia\Response->toResponse()
+#16 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(906): Illuminate\Routing\Router::toResponse()
+#17 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Routing\Router->prepareResponse()
+#18 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}()
+#19 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Auth/Middleware/RedirectIfAuthenticated.php(47): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#20 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Auth\Middleware\RedirectIfAuthenticated->handle()
+#21 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/AddLinkHeadersForPreloadedAssets.php(32): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#22 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets->handle()
+#23 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/inertiajs/inertia-laravel/src/Middleware.php(122): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#24 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Inertia\Middleware->handle()
+#25 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#26 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle()
+#27 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(87): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#28 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle()
+#29 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#30 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle()
+#31 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#32 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#33 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle()
+#34 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#35 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#36 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#37 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#38 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#39 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Pipeline\Pipeline->then()
+#40 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\Routing\Router->runRouteWithinStack()
+#41 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\Routing\Router->runRoute()
+#42 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\Routing\Router->dispatchToRoute()
+#43 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\Routing\Router->dispatch()
+#44 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}()
+#45 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#46 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#47 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#48 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#49 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#50 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#51 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#52 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#53 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#54 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#55 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#56 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle()
+#57 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#58 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle()
+#59 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#60 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#61 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#62 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle()
+#63 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#64 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then()
+#65 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#66 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle()
+#67 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call()
+#68 /home/Guzaum/.hermes/cache/scratch/red-wt/tests/Feature/AccessTest.php(32): Illuminate\Foundation\Testing\TestCase->get()
+#69 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(1667): AccessTest->test_AC_003_não_oferece_recuperação_por_email()
+#70 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#71 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+#72 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(365): PHPUnit\Framework\TestRunner->run()
+#73 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+#74 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+#75 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#76 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/TextUI/Application.php(211): PHPUnit\TextUI\TestRunner->run()
+#77 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run()
+#78 {main}
+
+Next Illuminate\View\ViewException: Vite manifest not found at: /home/Guzaum/.hermes/cache/scratch/red-wt/public/build/manifest.json (View: /home/Guzaum/.hermes/cache/scratch/red-wt/resources/views/app.blade.php) in /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php:946
+Stack trace:
+#0 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(59): Illuminate\View\Engines\CompilerEngine->handleViewException()
+#1 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(76): Illuminate\View\Engines\PhpEngine->evaluatePath()
+#2 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\View\Engines\CompilerEngine->get()
+#3 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\View\View->getContents()
+#4 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\View\View->renderContents()
+#5 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Response.php(78): Illuminate\View\View->render()
+#6 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Response.php(34): Illuminate\Http\Response->setContent()
+#7 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(61): Illuminate\Http\Response->__construct()
+#8 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(91): Illuminate\Routing\ResponseFactory->make()
+#9 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(363): Illuminate\Routing\ResponseFactory->view()
+#10 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/inertiajs/inertia-laravel/src/Response.php(219): Illuminate\Support\Facades\Facade::__callStatic()
+#11 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(921): Inertia\Response->toResponse()
+#12 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(906): Illuminate\Routing\Router::toResponse()
+#13 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Routing\Router->prepareResponse()
+#14 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}()
+#15 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Auth/Middleware/RedirectIfAuthenticated.php(47): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#16 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Auth\Middleware\RedirectIfAuthenticated->handle()
+#17 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/AddLinkHeadersForPreloadedAssets.php(32): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#18 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets->handle()
+#19 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/inertiajs/inertia-laravel/src/Middleware.php(122): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#20 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Inertia\Middleware->handle()
+#21 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#22 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle()
+#23 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(87): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#24 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle()
+#25 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#26 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle()
+#27 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#28 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#29 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle()
+#30 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#31 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#32 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#33 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#34 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#35 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Pipeline\Pipeline->then()
+#36 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\Routing\Router->runRouteWithinStack()
+#37 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\Routing\Router->runRoute()
+#38 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\Routing\Router->dispatchToRoute()
+#39 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\Routing\Router->dispatch()
+#40 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}()
+#41 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#42 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#43 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#44 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#45 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#46 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#47 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#48 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#49 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#50 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#51 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#52 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle()
+#53 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#54 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle()
+#55 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#56 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#57 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#58 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle()
+#59 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#60 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then()
+#61 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#62 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle()
+#63 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call()
+#64 /home/Guzaum/.hermes/cache/scratch/red-wt/tests/Feature/AccessTest.php(32): Illuminate\Foundation\Testing\TestCase->get()
+#65 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(1667): AccessTest->test_AC_003_não_oferece_recuperação_por_email()
+#66 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#67 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+#68 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(365): PHPUnit\Framework\TestRunner->run()
+#69 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+#70 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+#71 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#72 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/TextUI/Application.php(211): PHPUnit\TextUI\TestRunner->run()
+#73 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run()
+#74 {main}
+
+----------------------------------------------------------------------------------
+
+Vite manifest not found at: /home/Guzaum/.hermes/cache/scratch/red-wt/public/build/manifest.json (View: /home/Guzaum/.hermes/cache/scratch/red-wt/resources/views/app.blade.php)
+
+  at tests/Feature/AccessTest.php:32
+     28▕ 
+     29▕ // SPECSFY: FR-001
+     30▕ // SPECSFY: AC-003
+     31▕ public function test_AC_003_não_oferece_recuperação_por_email(): void {
+  ➜  32▕     $this->get('/forgot-password')->assertNotFound();
+     33▕     $this->get('/reset-password/token')->assertNotFound();
+     34▕ }
+     35▕ 
+     36▕ // SPECSFY: US-003 FR-003 NFR-001
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  AccessTest > a c 007 obriga troca antes de navegar                   
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/AccessTest.php:41
+     37▕ // SPECSFY: AC-007
+     38▕ public function test_AC_007_obriga_troca_antes_de_navegar(): void {
+     39▕     $user = User::factory()->create();
+     40▕     $user->forceFill(['must_change_password' => true])->save();
+  ➜  41▕     $this->actingAs($user)->get('/agenda')->assertRedirect('/trocar-senha');
+     42▕     $this->get('/projetos')->assertRedirect('/trocar-senha');
+     43▕     $this->get('/trocar-senha')->assertOk();
+     44▕ }
+     45▕
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  AccessTest > a c 008 troca senha provisória por senha diferente      
+  Session is missing expected key [errors].
+Failed asserting that false is true.
+
+  at tests/Feature/AccessTest.php:51
+     47▕ // SPECSFY: AC-008
+     48▕ public function test_AC_008_troca_senha_provisória_por_senha_diferente(): void {
+     49▕     $user = User::factory()->create(['password' => 'provisoria1']);
+     50▕     $user->forceFill(['must_change_password' => true])->save();
+  ➜  51▕     $this->actingAs($user)->put('/trocar-senha', ['password' => 'provisoria1', 'password_confirmation' => 'provisoria1'])->assertSessionHasErrors('password');
+     52▕     $this->put('/trocar-senha', ['password' => 'definitiva1', 'password_confirmation' => 'definitiva1'])->assertRedirect('/agenda');
+     53▕     $this->assertFalse($user->fresh()->must_change_password);
+     54▕ }
+     55▕
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  AccessTest > a c 009 recusa login desativado e aceita após reativ…   
+  Session is missing expected key [errors].
+Failed asserting that false is true.
+
+  at tests/Feature/AccessTest.php:61
+     57▕ // SPECSFY: AC-009
+     58▕ public function test_AC_009_recusa_login_desativado_e_aceita_após_reativação(): void {
+     59▕     $user = User::factory()->create(['password' => 'password']);
+     60▕     $user->forceFill(['deactivated_at' => now()])->save();
+  ➜  61▕     $this->post('/login', ['email' => $user->email, 'password' => 'password', 'remember' => true])->assertSessionHasErrors(['email' => 'Conta desativada. Fale com o administrador.']);
+     62▕     $this->assertGuest();
+     63▕     $user->forceFill(['deactivated_at' => null])->save();
+     64▕     $this->post('/login', ['email' => $user->email, 'password' => 'password'])->assertRedirect('/agenda');
+     65▕ }
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  AccessTest > a c 010 encerra acesso na próxima requisição após de…   
+  Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+  at tests/Feature/AccessTest.php:71
+     67▕ // SPECSFY: FR-004 NFR-001
+     68▕ // SPECSFY: AC-010
+     69▕ public function test_AC_010_encerra_acesso_na_próxima_requisição_após_desativar(): void {
+     70▕     $user = User::factory()->create();
+  ➜  71▕     $this->actingAs($user)->get('/agenda')->assertOk();
+     72▕     $user->forceFill(['deactivated_at' => now()])->save();
+     73▕     $this->get('/agenda')->assertRedirect('/login');
+     74▕     $this->assertGuest();
+     75▕ }
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  AccessTest > a c 017 nega usuários ao gesto…  AssertionFailedError   
+  Not a valid Inertia response.
+
+  at vendor/inertiajs/inertia-laravel/src/Testing/AssertableInertia.php:84
+     80▕             PHPUnit::assertArrayHasKey('version', $page);
+     81▕             PHPUnit::assertArrayHasKey('encryptHistory', $page);
+     82▕             PHPUnit::assertArrayHasKey('clearHistory', $page);
+     83▕         } catch (AssertionFailedError $e) {
+  ➜  84▕             PHPUnit::fail('Not a valid Inertia response.');
+     85▕         }
+     86▕ 
+     87▕         $instance = static::fromArray($page['props']);
+     88▕         $instance->component = $page['component'];
+
+      [2m+3 vendor frames [22m
+  4   tests/Feature/AccessTest.php:81
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  AccessTest > a c 018 redireciona home à agenda e compartilha nexu…   
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 500.
+Failed asserting that false is true.
+
+The following exception occurred during the last request:
+
+Illuminate\Foundation\ViteManifestNotFoundException: Vite manifest not found at: /home/Guzaum/.hermes/cache/scratch/red-wt/public/build/manifest.json in /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php:946
+Stack trace:
+#0 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php(384): Illuminate\Foundation\Vite->manifest()
+#1 /home/Guzaum/.hermes/cache/scratch/red-wt/storage/framework/views/4ddfa7c104313de85614c4b0ac806042.php(14): Illuminate\Foundation\Vite->__invoke()
+#2 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('...')
+#3 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+#4 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire()
+#5 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(76): Illuminate\View\Engines\PhpEngine->evaluatePath()
+#6 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\View\Engines\CompilerEngine->get()
+#7 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\View\View->getContents()
+#8 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\View\View->renderContents()
+#9 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Response.php(78): Illuminate\View\View->render()
+#10 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Response.php(34): Illuminate\Http\Response->setContent()
+#11 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(61): Illuminate\Http\Response->__construct()
+#12 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(91): Illuminate\Routing\ResponseFactory->make()
+#13 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(363): Illuminate\Routing\ResponseFactory->view()
+#14 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/inertiajs/inertia-laravel/src/Response.php(219): Illuminate\Support\Facades\Facade::__callStatic()
+#15 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(921): Inertia\Response->toResponse()
+#16 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(906): Illuminate\Routing\Router::toResponse()
+#17 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Routing\Router->prepareResponse()
+#18 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}()
+#19 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/AddLinkHeadersForPreloadedAssets.php(32): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#20 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets->handle()
+#21 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/inertiajs/inertia-laravel/src/Middleware.php(122): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#22 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Inertia\Middleware->handle()
+#23 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#24 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle()
+#25 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(87): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#26 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle()
+#27 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#28 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle()
+#29 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#30 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#31 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle()
+#32 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#33 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#34 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#35 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#36 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#37 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Pipeline\Pipeline->then()
+#38 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\Routing\Router->runRouteWithinStack()
+#39 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\Routing\Router->runRoute()
+#40 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\Routing\Router->dispatchToRoute()
+#41 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\Routing\Router->dispatch()
+#42 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}()
+#43 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#44 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#45 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#46 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#47 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#48 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#49 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#50 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#51 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#52 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#53 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#54 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle()
+#55 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#56 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle()
+#57 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#58 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#59 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#60 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle()
+#61 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#62 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then()
+#63 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#64 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle()
+#65 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call()
+#66 /home/Guzaum/.hermes/cache/scratch/red-wt/tests/Feature/AccessTest.php(88): Illuminate\Foundation\Testing\TestCase->get()
+#67 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(1667): AccessTest->test_AC_018_redireciona_home_à_agenda_e_compartilha_Nexus()
+#68 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#69 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+#70 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(365): PHPUnit\Framework\TestRunner->run()
+#71 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+#72 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+#73 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#74 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/TextUI/Application.php(211): PHPUnit\TextUI\TestRunner->run()
+#75 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run()
+#76 {main}
+
+Next Illuminate\View\ViewException: Vite manifest not found at: /home/Guzaum/.hermes/cache/scratch/red-wt/public/build/manifest.json (View: /home/Guzaum/.hermes/cache/scratch/red-wt/resources/views/app.blade.php) in /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php:946
+Stack trace:
+#0 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(59): Illuminate\View\Engines\CompilerEngine->handleViewException()
+#1 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(76): Illuminate\View\Engines\PhpEngine->evaluatePath()
+#2 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\View\Engines\CompilerEngine->get()
+#3 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\View\View->getContents()
+#4 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\View\View->renderContents()
+#5 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Response.php(78): Illuminate\View\View->render()
+#6 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Response.php(34): Illuminate\Http\Response->setContent()
+#7 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(61): Illuminate\Http\Response->__construct()
+#8 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(91): Illuminate\Routing\ResponseFactory->make()
+#9 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(363): Illuminate\Routing\ResponseFactory->view()
+#10 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/inertiajs/inertia-laravel/src/Response.php(219): Illuminate\Support\Facades\Facade::__callStatic()
+#11 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(921): Inertia\Response->toResponse()
+#12 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(906): Illuminate\Routing\Router::toResponse()
+#13 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Routing\Router->prepareResponse()
+#14 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}()
+#15 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/AddLinkHeadersForPreloadedAssets.php(32): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#16 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets->handle()
+#17 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/inertiajs/inertia-laravel/src/Middleware.php(122): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#18 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Inertia\Middleware->handle()
+#19 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#20 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle()
+#21 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(87): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#22 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle()
+#23 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#24 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle()
+#25 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#26 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#27 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle()
+#28 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#29 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#30 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#31 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#32 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#33 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Pipeline\Pipeline->then()
+#34 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\Routing\Router->runRouteWithinStack()
+#35 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\Routing\Router->runRoute()
+#36 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\Routing\Router->dispatchToRoute()
+#37 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\Routing\Router->dispatch()
+#38 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}()
+#39 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#40 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#41 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#42 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#43 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#44 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#45 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#46 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#47 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#48 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#49 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#50 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle()
+#51 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#52 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle()
+#53 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#54 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#55 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#56 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle()
+#57 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#58 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then()
+#59 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#60 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle()
+#61 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call()
+#62 /home/Guzaum/.hermes/cache/scratch/red-wt/tests/Feature/AccessTest.php(88): Illuminate\Foundation\Testing\TestCase->get()
+#63 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(1667): AccessTest->test_AC_018_redireciona_home_à_agenda_e_compartilha_Nexus()
+#64 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#65 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+#66 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestCase.php(365): PHPUnit\Framework\TestRunner->run()
+#67 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+#68 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+#69 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#70 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/src/TextUI/Application.php(211): PHPUnit\TextUI\TestRunner->run()
+#71 /home/Guzaum/.hermes/cache/scratch/red-wt/vendor/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run()
+#72 {main}
+
+----------------------------------------------------------------------------------
+
+Vite manifest not found at: /home/Guzaum/.hermes/cache/scratch/red-wt/public/build/manifest.json (View: /home/Guzaum/.hermes/cache/scratch/red-wt/resources/views/app.blade.php)
+
+  at tests/Feature/AccessTest.php:88
+     84▕ 
+     85▕ // SPECSFY: FR-007 NFR-002
+     86▕ // SPECSFY: AC-018
+     87▕ public function test_AC_018_redireciona_home_à_agenda_e_compartilha_Nexus(): void {
+  ➜  88▕     $this->get('/')->assertRedirect('/login');
+     89▕     $user = User::factory()->create();
+     90▕     $this->actingAs($user)->get('/')->assertRedirect('/agenda');
+     91▕     $this->get('/agenda')->assertInertia(fn (Assert $page) => $page->component('agenda')->where('name', 'Nexus')->where('auth.user.is_adm', false));
+     92▕ }
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  UserManagementTest > a c 004 adm cria gestor com senha provisória    
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/UserManagementTest.php:19
+     15▕ 
+     16▕ // SPECSFY: US-001 FR-002
+     17▕ // SPECSFY: AC-004
+     18▕ public function test_AC_004_adm_cria_gestor_com_senha_provisória(): void {
+  ➜  19▕     $this->actingAs(admForSpec())->post('/usuarios', ['name' => 'Ana', 'email' => 'ANA@CLIENTE.COM', 'password' => 'provisoria1'])->assertRedirect();
+     20▕     $user = User::where('email', 'ana@cliente.com')->firstOrFail();
+     21▕     $this->assertSame('gestor', $user->role); $this->assertTrue($user->must_change_password); $this->assertTrue($user->isActive());
+     22▕ }
+     23▕
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  UserManagementTest > a c 005 rejeita email duplicado sem diferenc…   
+  Session is missing expected key [errors].
+Failed asserting that false is true.
+
+  at tests/Feature/UserManagementTest.php:29
+     25▕ // SPECSFY: AC-005
+     26▕ public function test_AC_005_rejeita_email_duplicado_sem_diferenciar_maiúsculas(): void {
+     27▕     $adm = admForSpec();
+     28▕     User::factory()->create(['email' => 'ana@cliente.com']);
+  ➜  29▕     $this->actingAs($adm)->post('/usuarios', ['name' => 'Outra', 'email' => 'Ana@Cliente.com', 'password' => 'provisoria1'])->assertSessionHasErrors('email');
+     30▕     $this->assertSame(1, User::where('email', 'ana@cliente.com')->count());
+     31▕ }
+     32▕ 
+     33▕ // SPECSFY: US-001 FR-002 FR-003
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  UserManagementTest > a c 006 redefine senha e revoga sessões         
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/UserManagementTest.php:39
+     35▕ public function test_AC_006_redefine_senha_e_revoga_sessões(): void {
+     36▕     $adm = admForSpec(); $gestor = User::factory()->create();
+     37▕     DB::table('sessions')->insert(['id' => 'sessao-gestor', 'user_id' => $gestor->id, 'payload' => '', 'last_activity' => time()]);
+     38▕     $oldToken = $gestor->remember_token;
+  ➜  39▕     $this->actingAs($adm)->post("/usuarios/{$gestor->id}/redefinir-senha", ['password' => 'nova12345'])->assertRedirect();
+     40▕     $this->assertTrue($gestor->fresh()->must_change_password); $this->assertSame(0, DB::table('sessions')->where('user_id', $gestor->id)->count()); $this->assertNotSame($oldToken, $gestor->fresh()->remember_token);
+     41▕ }
+     42▕ 
+     43▕ // SPECSFY: FR-004
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  UserManagementTest > a c 011 adm não se desativa                     
+  Expected response status code [403] but received 404.
+Failed asserting that 404 is identical to 403.
+
+  at tests/Feature/UserManagementTest.php:47
+     43▕ // SPECSFY: FR-004
+     44▕ // SPECSFY: AC-011
+     45▕ public function test_AC_011_adm_não_se_desativa(): void {
+     46▕     $adm = admForSpec();
+  ➜  47▕     $this->actingAs($adm)->post("/usuarios/{$adm->id}/desativar")->assertForbidden();
+     48▕     $this->get('/usuarios')->assertInertia(fn (Assert $page) => $page->component('usuarios/index')->where('users.0.can.deactivate', false));
+     49▕     $this->assertNull($adm->fresh()->deactivated_at);
+     50▕ }
+     51▕
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  UserManagementTest > a c 019 fornece tela e…  AssertionFailedError   
+  Not a valid Inertia response.
+
+  at vendor/inertiajs/inertia-laravel/src/Testing/AssertableInertia.php:84
+     80▕             PHPUnit::assertArrayHasKey('version', $page);
+     81▕             PHPUnit::assertArrayHasKey('encryptHistory', $page);
+     82▕             PHPUnit::assertArrayHasKey('clearHistory', $page);
+     83▕         } catch (AssertionFailedError $e) {
+  ➜  84▕             PHPUnit::fail('Not a valid Inertia response.');
+     85▕         }
+     86▕ 
+     87▕         $instance = static::fromArray($page['props']);
+     88▕         $instance->component = $page['component'];
+
+      [2m+3 vendor frames [22m
+  4   tests/Feature/UserManagementTest.php:55
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  ProjectTest > a c 012 adm cria e altera atribuição de projeto        
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/ProjectTest.php:20
+     16▕ // SPECSFY: US-002 FR-005
+     17▕ // SPECSFY: AC-012
+     18▕ public function test_AC_012_adm_cria_e_altera_atribuição_de_projeto(): void {
+     19▕     $adm = projectAdm(); $ana = User::factory()->create(); $bruno = User::factory()->create();
+  ➜  20▕     $this->actingAs($adm)->post('/projetos', ['name' => 'Mentoria X', 'user_ids' => [$ana->id]])->assertRedirect();
+     21▕     $project = Project::where('name', 'Mentoria X')->firstOrFail();
+     22▕     $this->assertSame([$ana->id], $project->users()->pluck('users.id')->all());
+     23▕     $this->patch("/projetos/{$project->id}", ['name' => 'Mentoria X', 'user_ids' => [$bruno->id]])->assertRedirect();
+     24▕     $this->assertSame([$bruno->id], $project->users()->pluck('users.id')->all());
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  ProjectTest > a c 013 arquivado some do gestor e pode ser…   Error   
+  Class "App\Models\Project" not found
+
+  at tests/Feature/ProjectTest.php:30
+     26▕ 
+     27▕ // SPECSFY: US-002 FR-005 FR-006
+     28▕ // SPECSFY: AC-013
+     29▕ public function test_AC_013_arquivado_some_do_gestor_e_pode_ser_desarquivado(): void {
+  ➜  30▕     $adm = projectAdm(); $ana = User::factory()->create(); $project = Project::create(['name' => 'Mentoria X']); $project->users()->attach($ana);
+     31▕     $this->actingAs($adm)->post("/projetos/{$project->id}/arquivar")->assertRedirect();
+     32▕     $this->actingAs($ana)->get("/projetos/{$project->id}")->assertForbidden();
+     33▕     $this->actingAs($adm)->get('/projetos?status=arquivados')->assertInertia(fn (Assert $page) => $page->component('projetos/index')->where('projects.0.name', 'Mentoria X'));
+     34▕     $this->post("/projetos/{$project->id}/desarquivar")->assertRedirect();
+
+  1   tests/Feature/ProjectTest.php:30
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  ProjectTest > a c 014 exige nome único de projeto sem dife…  Error   
+  Class "App\Models\Project" not found
+
+  at tests/Feature/ProjectTest.php:40
+     36▕ 
+     37▕ // SPECSFY: US-002 FR-005
+     38▕ // SPECSFY: AC-014
+     39▕ public function test_AC_014_exige_nome_único_de_projeto_sem_diferenciar_caixa(): void {
+  ➜  40▕     $adm = projectAdm(); Project::create(['name' => 'Mentoria X']);
+     41▕     $this->actingAs($adm)->post('/projetos', ['name' => ''])->assertSessionHasErrors('name');
+     42▕     $this->post('/projetos', ['name' => 'mentoria x'])->assertSessionHasErrors('name');
+     43▕     $this->assertSame(1, Project::count());
+     44▕ }
+
+  1   tests/Feature/ProjectTest.php:40
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  ProjectTest > a c 015 gestor vê apenas projetos atribuídos   Error   
+  Class "App\Models\Project" not found
+
+  at tests/Feature/ProjectTest.php:50
+     46▕ // SPECSFY: US-003 FR-006
+     47▕ // SPECSFY: AC-015
+     48▕ public function test_AC_015_gestor_vê_apenas_projetos_atribuídos(): void {
+     49▕     $ana = User::factory()->create(); $bruno = User::factory()->create();
+  ➜  50▕     $one = Project::create(['name' => 'Mentoria X']); $one->users()->attach($ana);
+     51▕     $two = Project::create(['name' => 'Imersão Y']); $two->users()->attach($bruno);
+     52▕     $this->actingAs($ana)->get('/projetos')->assertInertia(fn (Assert $page) => $page->component('projetos/index')->has('projects', 1)->where('projects.0.name', 'Mentoria X')->where('can.create', false)->where('can.update', false)->where('can.archive', false));
+     53▕ }
+     54▕
+
+  1   tests/Feature/ProjectTest.php:50
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  ProjectTest > a c 016 nega u r l de projeto alheio           Error   
+  Class "App\Models\Project" not found
+
+  at tests/Feature/ProjectTest.php:58
+     54▕ 
+     55▕ // SPECSFY: US-003 FR-006 NFR-001
+     56▕ // SPECSFY: AC-016
+     57▕ public function test_AC_016_nega_URL_de_projeto_alheio(): void {
+  ➜  58▕     $ana = User::factory()->create(); $other = Project::create(['name' => 'Imersão Y']);
+     59▕     $this->actingAs($ana)->get("/projetos/{$other->id}")->assertForbidden();
+     60▕ }
+     61▕ 
+     62▕ // SPECSFY: US-002 FR-005 NFR-001
+
+  1   tests/Feature/ProjectTest.php:58
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  ProjectTest > a c 020 gestor não escreve por requisição di…  Error   
+  Class "App\Models\Project" not found
+
+  at tests/Feature/ProjectTest.php:65
+     61▕ 
+     62▕ // SPECSFY: US-002 FR-005 NFR-001
+     63▕ // SPECSFY: AC-020
+     64▕ public function test_AC_020_gestor_não_escreve_por_requisição_direta(): void {
+  ➜  65▕     $ana = User::factory()->create(); $project = Project::create(['name' => 'Mentoria X']); $project->users()->attach($ana);
+     66▕     $this->actingAs($ana)->post('/projetos', ['name' => 'Outro'])->assertForbidden();
+     67▕     $this->patch("/projetos/{$project->id}", ['name' => 'Alterado'])->assertForbidden();
+     68▕     $this->post("/projetos/{$project->id}/arquivar")->assertForbidden();
+     69▕     $this->assertSame('Mentoria X', $project->fresh()->name);
+
+  1   tests/Feature/ProjectTest.php:65
+
+
+  Tests:    20 failed (17 assertions)
+  Duration: 1.72s
+

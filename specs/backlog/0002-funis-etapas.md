@@ -11,7 +11,7 @@
 | Prioridade | P1 |
 | Milestones | Núcleo (MVP) — fatia 2 |
 | Criado em | 2026-09-26 |
-| Spec promovida | specs/draft/0002-funis-etapas/spec.md |
+| Spec promovida | specs/defined/0002-funis-etapas/spec.md |
 
 ## Ideia original
 

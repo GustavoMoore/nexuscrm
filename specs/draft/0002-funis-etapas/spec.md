@@ -11,7 +11,7 @@
 | Effort rationale | Duas tabelas, dois controllers, duas telas reutilizando os componentes da SPEC-0001; sem integração externa. |
 | ClickUp Task | |
 | Milestones | Núcleo (MVP) — fatia 2 |
-| Definition Gate | Pending |
+| Definition Gate | Passed |
 | Plan Gate | Pending |
 | Delivery Gate | Pending |
 | Evidence Contract | 1 |
@@ -552,9 +552,9 @@ tests/Feature/{FunnelTest,StageTest}.php
 
 #### Gate do Ato I — Definição
 
-- **Resultado**: Pending
+- **Resultado**: Passed (2026-09-27)
 - **Comando**: `node .agents/skills/specsfy-04-validate/scripts/validate_spec.mjs specs/draft/0002-funis-etapas/spec.md`
-- **Achados**: Pending.
+- **Achados**: validação estrutural sem erros; aprovação do responsável em 2026-09-27.
 
 #### Gate do Ato II — Plano
 

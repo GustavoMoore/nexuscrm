@@ -1,0 +1,26 @@
+# Dependencies and generated artifacts
+vendor/
+node_modules/
+bootstrap/cache/
+storage/framework/
+storage/logs/
+public/build/
+public/hot
+.phpunit.cache/
+.phpunit.result.cache
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+.npmrc
+
+# Tool internals (not application architecture)
+graphify-out/
+.agents/
+.claude/
+.codex/
+.hermes/
+.specsfy/templates/
+.specsfy/examples/
+.specsfy/skills-lock.json

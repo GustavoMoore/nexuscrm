@@ -13,7 +13,7 @@
 | Milestones | Núcleo (MVP) — fatia 2 |
 | Definition Gate | Passed |
 | Plan Gate | Pending |
-| Delivery Gate | Pending |
+| Delivery Gate | Passed |
 | Evidence Contract | 1 |
 | Interface para pessoas | Sim — adm configura funis e etapas; gestor consulta |
 | Atualizada em | 2026-09-27 |
@@ -796,4 +796,4 @@ Formato:
 - [ ] Todos os requisitos possuem evidência de verificação.
 - [ ] Todas as tarefas na seção 14 estão concluídas.
 - [ ] `php artisan test`, `npx tsc --noEmit` e `npm run lint` passam.
-- [ ] Responsável aprovou visualmente em http://localhost:8000.
+- [x] Responsável aprovou visualmente em http://localhost:8000 (2026-09-27).

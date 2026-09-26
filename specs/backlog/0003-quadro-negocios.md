@@ -3,7 +3,7 @@
 | Metainformação | Valor |
 | --- | --- |
 | ID | BACKLOG-0003 |
-| Status | Captured |
+| Status | Refining |
 | Produto | A esclarecer |
 | Épico | A esclarecer |
 | Funcionalidade | A esclarecer |
@@ -85,3 +85,8 @@ A esclarecer.
 ## Próximo passo
 
 Aprofundar nesta etapa até o item ficar pronto para `$specsfy-03-specify`.
+
+## Decisões de produto (discovery fatia 3)
+
+- Já decidido: card = negócio (valor R$, etapa, próximo passo com data obrigatório, anotações com autor/data, motivo de perda); pessoa única por projeto, 1 negócio por funil; Ganho/Perdido são estados com motivo de perda de lista; visão kanban e lista; apagar etapa com negócios exige escolher etapa destino (herdado da SPEC-0002).
+- P1 (responsável): negócio tem um ou mais responsáveis (N:N). Quem cria vira responsável automaticamente; o adm adiciona/remove responsáveis (só gestores atribuídos ao projeto; mínimo 1). Minha agenda (fatia 4) mostra os negócios em que o usuário é responsável; o quadro mostra todos os negócios do projeto a quem o atende.

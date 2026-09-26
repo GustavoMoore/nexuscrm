@@ -1,0 +1,270 @@
+
+   FAIL  FunnelTest
+  ⨯ a c 001 funil nasce com quatro etapas                                0.16s  
+  ⨯ a c 002 nome obrigatorio e unico por projeto                         0.04s  
+  ⨯ a c 003 renomeia sem alterar etapas                                  0.05s  
+  ⨯ a c 004 arquivar oculta do gestor e desarquivar restaura             0.04s  
+  ⨯ a c 005 sem limite de funis                                          0.04s  
+  ⨯ a c 006 gestor ve funis e etapas sem poder gerir                     0.03s  
+  ⨯ a c 007 projeto alheio 403 e pai errado 404                          0.04s  
+  ⨯ a c 008 gestor nao escreve em funis ou etapas                        0.04s  
+  ⨯ a c 014 props de funis e etapas                                      0.04s  
+
+   FAIL  StageTest
+  ⨯ a c 009 adiciona etapa no fim                                        0.07s  
+  ⨯ a c 010 renomeia e valida nome unico                                 0.04s  
+  ⨯ a c 011 move para vizinha e pontas nao falham                        0.04s  
+  ⨯ a c 012 apaga renumera e recusa ultima etapa                         0.04s  
+  ⨯ a c 013 etapa de outro funil retorna 404                             0.05s  
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  FunnelTest > a c 001 funil nasce com quatro etapas                   
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/FunnelTest.php:38
+     34▕     public function test_AC_001_funil_nasce_com_quatro_etapas(): void
+     35▕     {
+     36▕         $project = $this->project();
+     37▕         $this->actingAs($this->adm())->post("/projetos/{$project->id}/funis", ['name' => 'Lançamento'])
+  ➜  38▕             ->assertRedirect()->assertSessionHas('success');
+     39▕         $funnel = $project->funnels()->where('name', 'Lançamento')->firstOrFail();
+     40▕         $this->assertSame(['Novo contato', 'Qualificação', 'Proposta', 'Negociação'], $funnel->stages->pluck('name')->all());
+     41▕         $this->assertSame([1, 2, 3, 4], $funnel->stages->pluck('position')->all());
+     42▕     }
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  FunnelTest > a c 002 nome obrigatorio e unico por projeto            
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/FunnelTest.php:28
+     24▕     }
+     25▕ 
+     26▕     private function createFunnel(Project $project, string $name = 'Lançamento'): int
+     27▕     {
+  ➜  28▕         $this->actingAs($this->adm())->post("/projetos/{$project->id}/funis", ['name' => $name])->assertRedirect();
+     29▕ 
+     30▕         return (int) $project->funnels()->where('name', $name)->firstOrFail()->id;
+     31▕     }
+     32▕
+
+  1   tests/Feature/FunnelTest.php:49
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  FunnelTest > a c 003 renomeia sem alterar etapas                     
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/FunnelTest.php:28
+     24▕     }
+     25▕ 
+     26▕     private function createFunnel(Project $project, string $name = 'Lançamento'): int
+     27▕     {
+  ➜  28▕         $this->actingAs($this->adm())->post("/projetos/{$project->id}/funis", ['name' => $name])->assertRedirect();
+     29▕ 
+     30▕         return (int) $project->funnels()->where('name', $name)->firstOrFail()->id;
+     31▕     }
+     32▕
+
+  1   tests/Feature/FunnelTest.php:61
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  FunnelTest > a c 004 arquivar oculta do gestor e desarquivar rest…   
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/FunnelTest.php:28
+     24▕     }
+     25▕ 
+     26▕     private function createFunnel(Project $project, string $name = 'Lançamento'): int
+     27▕     {
+  ➜  28▕         $this->actingAs($this->adm())->post("/projetos/{$project->id}/funis", ['name' => $name])->assertRedirect();
+     29▕ 
+     30▕         return (int) $project->funnels()->where('name', $name)->firstOrFail()->id;
+     31▕     }
+     32▕
+
+  1   tests/Feature/FunnelTest.php:72
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  FunnelTest > a c 005 sem limite de funis                             
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/FunnelTest.php:88
+     84▕     {
+     85▕         $project = $this->project();
+     86▕         $this->actingAs($this->adm());
+     87▕         foreach (range(1, 5) as $i) {
+  ➜  88▕             $this->post("/projetos/{$project->id}/funis", ['name' => "Funil $i"])->assertRedirect();
+     89▕         }
+     90▕         $this->assertSame(5, $project->funnels()->count());
+     91▕     }
+     92▕
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  FunnelTest > a c 006 gestor ve funis e etapas sem poder gerir        
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/FunnelTest.php:28
+     24▕     }
+     25▕ 
+     26▕     private function createFunnel(Project $project, string $name = 'Lançamento'): int
+     27▕     {
+  ➜  28▕         $this->actingAs($this->adm())->post("/projetos/{$project->id}/funis", ['name' => $name])->assertRedirect();
+     29▕ 
+     30▕         return (int) $project->funnels()->where('name', $name)->firstOrFail()->id;
+     31▕     }
+     32▕
+
+  1   tests/Feature/FunnelTest.php:97
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  FunnelTest > a c 007 projeto alheio 403 e pai errado 404             
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/FunnelTest.php:28
+     24▕     }
+     25▕ 
+     26▕     private function createFunnel(Project $project, string $name = 'Lançamento'): int
+     27▕     {
+  ➜  28▕         $this->actingAs($this->adm())->post("/projetos/{$project->id}/funis", ['name' => $name])->assertRedirect();
+     29▕ 
+     30▕         return (int) $project->funnels()->where('name', $name)->firstOrFail()->id;
+     31▕     }
+     32▕
+
+  1   tests/Feature/FunnelTest.php:109
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  FunnelTest > a c 008 gestor nao escreve em funis ou etapas           
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/FunnelTest.php:28
+     24▕     }
+     25▕ 
+     26▕     private function createFunnel(Project $project, string $name = 'Lançamento'): int
+     27▕     {
+  ➜  28▕         $this->actingAs($this->adm())->post("/projetos/{$project->id}/funis", ['name' => $name])->assertRedirect();
+     29▕ 
+     30▕         return (int) $project->funnels()->where('name', $name)->firstOrFail()->id;
+     31▕     }
+     32▕
+
+  1   tests/Feature/FunnelTest.php:120
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  FunnelTest > a c 014 props de funis e etapas                         
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/FunnelTest.php:28
+     24▕     }
+     25▕ 
+     26▕     private function createFunnel(Project $project, string $name = 'Lançamento'): int
+     27▕     {
+  ➜  28▕         $this->actingAs($this->adm())->post("/projetos/{$project->id}/funis", ['name' => $name])->assertRedirect();
+     29▕ 
+     30▕         return (int) $project->funnels()->where('name', $name)->firstOrFail()->id;
+     31▕     }
+     32▕
+
+  1   tests/Feature/FunnelTest.php:141
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  StageTest > a c 009 adiciona etapa no fim                            
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/StageTest.php:17
+     13▕     {
+     14▕         $adm = User::factory()->create();
+     15▕         $adm->forceFill(['role' => 'adm'])->save();
+     16▕         $project = Project::create(['name' => 'Alfa']);
+  ➜  17▕         $this->actingAs($adm)->post("/projetos/{$project->id}/funis", ['name' => 'Lançamento'])->assertRedirect();
+     18▕         $funnel = $project->funnels()->firstOrFail();
+     19▕ 
+     20▕         return [$project, $funnel, "/projetos/{$project->id}/funis/{$funnel->id}/etapas"];
+     21▕     }
+
+  1   tests/Feature/StageTest.php:26
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  StageTest > a c 010 renomeia e valida nome unico                     
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/StageTest.php:17
+     13▕     {
+     14▕         $adm = User::factory()->create();
+     15▕         $adm->forceFill(['role' => 'adm'])->save();
+     16▕         $project = Project::create(['name' => 'Alfa']);
+  ➜  17▕         $this->actingAs($adm)->post("/projetos/{$project->id}/funis", ['name' => 'Lançamento'])->assertRedirect();
+     18▕         $funnel = $project->funnels()->firstOrFail();
+     19▕ 
+     20▕         return [$project, $funnel, "/projetos/{$project->id}/funis/{$funnel->id}/etapas"];
+     21▕     }
+
+  1   tests/Feature/StageTest.php:35
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  StageTest > a c 011 move para vizinha e pontas nao falham            
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/StageTest.php:17
+     13▕     {
+     14▕         $adm = User::factory()->create();
+     15▕         $adm->forceFill(['role' => 'adm'])->save();
+     16▕         $project = Project::create(['name' => 'Alfa']);
+  ➜  17▕         $this->actingAs($adm)->post("/projetos/{$project->id}/funis", ['name' => 'Lançamento'])->assertRedirect();
+     18▕         $funnel = $project->funnels()->firstOrFail();
+     19▕ 
+     20▕         return [$project, $funnel, "/projetos/{$project->id}/funis/{$funnel->id}/etapas"];
+     21▕     }
+
+  1   tests/Feature/StageTest.php:46
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  StageTest > a c 012 apaga renumera e recusa ultima etapa             
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/StageTest.php:17
+     13▕     {
+     14▕         $adm = User::factory()->create();
+     15▕         $adm->forceFill(['role' => 'adm'])->save();
+     16▕         $project = Project::create(['name' => 'Alfa']);
+  ➜  17▕         $this->actingAs($adm)->post("/projetos/{$project->id}/funis", ['name' => 'Lançamento'])->assertRedirect();
+     18▕         $funnel = $project->funnels()->firstOrFail();
+     19▕ 
+     20▕         return [$project, $funnel, "/projetos/{$project->id}/funis/{$funnel->id}/etapas"];
+     21▕     }
+
+  1   tests/Feature/StageTest.php:62
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  StageTest > a c 013 etapa de outro funil retorna 404                 
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 404.
+Failed asserting that false is true.
+
+  at tests/Feature/StageTest.php:17
+     13▕     {
+     14▕         $adm = User::factory()->create();
+     15▕         $adm->forceFill(['role' => 'adm'])->save();
+     16▕         $project = Project::create(['name' => 'Alfa']);
+  ➜  17▕         $this->actingAs($adm)->post("/projetos/{$project->id}/funis", ['name' => 'Lançamento'])->assertRedirect();
+     18▕         $funnel = $project->funnels()->firstOrFail();
+     19▕ 
+     20▕         return [$project, $funnel, "/projetos/{$project->id}/funis/{$funnel->id}/etapas"];
+     21▕     }
+
+  1   tests/Feature/StageTest.php:78
+
+
+  Tests:    14 failed (14 assertions)
+  Duration: 0.76s
+

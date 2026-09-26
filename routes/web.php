@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\FunnelController;
 use App\Http\Controllers\PasswordChangeController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\StageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -13,11 +15,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/agenda', fn () => Inertia::render('agenda'))->name('agenda');
     Route::get('/projetos', [ProjectController::class, 'index'])->name('projects.index');
     Route::get('/projetos/{project}', [ProjectController::class, 'show'])->name('projects.show');
+    Route::get('/projetos/{project}/funis/{funnel}', [FunnelController::class, 'show'])->scopeBindings()->name('funnels.show');
     Route::middleware('can:adm')->group(function () {
         Route::post('/projetos', [ProjectController::class, 'store']);
         Route::patch('/projetos/{project}', [ProjectController::class, 'update']);
         Route::post('/projetos/{project}/arquivar', [ProjectController::class, 'archive']);
         Route::post('/projetos/{project}/desarquivar', [ProjectController::class, 'unarchive']);
+        Route::scopeBindings()->group(function () {
+            Route::post('/projetos/{project}/funis', [FunnelController::class, 'store']);
+            Route::patch('/projetos/{project}/funis/{funnel}', [FunnelController::class, 'update']);
+            Route::post('/projetos/{project}/funis/{funnel}/arquivar', [FunnelController::class, 'archive']);
+            Route::post('/projetos/{project}/funis/{funnel}/desarquivar', [FunnelController::class, 'unarchive']);
+            Route::post('/projetos/{project}/funis/{funnel}/etapas', [StageController::class, 'store']);
+            Route::patch('/projetos/{project}/funis/{funnel}/etapas/{stage}', [StageController::class, 'update']);
+            Route::post('/projetos/{project}/funis/{funnel}/etapas/{stage}/mover', [StageController::class, 'move']);
+            Route::delete('/projetos/{project}/funis/{funnel}/etapas/{stage}', [StageController::class, 'destroy']);
+        });
         Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
         Route::post('/usuarios', [UserController::class, 'store']);
         Route::patch('/usuarios/{user}', [UserController::class, 'update']);

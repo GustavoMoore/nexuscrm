@@ -94,3 +94,20 @@ vazio, upload ou ação em lote.
 | AppSidebar, AppHeader, NavMain | `resources/js/components/{app-sidebar,app-header,nav-main}.tsx` | starter kit adaptado | Shell; menu por papel, item ativo e `aria-current` |
 
 Telas: `/agenda` (`pages/agenda.tsx`), `/usuarios` (`pages/usuarios/index.tsx`), `/projetos` (`pages/projetos/index.tsx`), `/projetos/{id}` (`pages/projetos/show.tsx`), `/trocar-senha` (`pages/auth/trocar-senha.tsx`). As listas mostram vazio ou dados; erros de formulário ficam junto ao campo. O registry ReUI e `shadcn add table` não responderam em 60 s/20 s neste ambiente; a tabela usa código local equivalente à primitive shadcn sem pacote novo.
+
+## SPEC-0002 — funis e etapas
+
+| Bloco | Arquivo | Origem | Consumidores / contrato |
+| --- | --- | --- | --- |
+| FunnelFormSheet | `resources/js/components/funnel-form-sheet.tsx` | shadcn Sheet/Input/Label | `/projetos/{id}`; criar e renomear funil, foco inicial no nome, Esc, erro associado ao campo e retorno de foco pelo Radix |
+| StageFormSheet | `resources/js/components/stage-form-sheet.tsx` | shadcn Sheet/Input/Label | `/projetos/{id}/funis/{id}`; criar e renomear etapa, foco inicial no nome, Esc, erro associado ao campo |
+| Table | `resources/js/components/ui/table.tsx` | SPEC-0001 | Listas de funis e etapas; largura total com rolagem horizontal no mobile, coluna ID visível |
+| ConfirmDialog | `resources/js/components/confirm-dialog.tsx` | SPEC-0001 | Arquivar/desarquivar funil e apagar etapa, com confirmação por teclado |
+| PageHeader, FlashMessage, EmptyState | `resources/js/components/` | SPEC-0001 | Cabeçalho, sucesso e estado vazio nas duas telas |
+
+| Tela ou rota | Arquivo | Componentes React usados | Dados e ações | Estados |
+| --- | --- | --- | --- | --- |
+| `/projetos/{id}` | `resources/js/pages/projetos/show.tsx` | PageHeader, FlashMessage, EmptyState, Table, Badge, FunnelFormSheet, ConfirmDialog | Funis ativos; adm alterna Ativos/Arquivados e cria, edita ou arquiva; gestor consulta ativos | vazio, dados, erro no painel e sem ações de gestão |
+| `/projetos/{id}/funis/{id}` | `resources/js/pages/funis/show.tsx` | PageHeader, FlashMessage, EmptyState, Table, Badge, StageFormSheet, ConfirmDialog | Etapas ordenadas; adm adiciona, edita, sobe, desce e apaga; gestor consulta | dados, erro no painel, limites de movimento desabilitados, última etapa protegida |
+
+A navegação principal continua em Projetos. A linha do funil e seu link abrem o detalhe. O shell existente apresenta os breadcrumbs `Projetos / projeto / funil`. Os botões de mover usam `ArrowUp`/`ArrowDown`, têm nome acessível com a etapa e ficam desabilitados nas pontas. Os painéis laterais usam o foco preso e o comportamento de Esc da primitive Radix.

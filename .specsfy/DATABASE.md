@@ -16,6 +16,7 @@ Para Laravel, descreva módulos de domínio, fronteiras HTTP/console e use `data
 | Estrutura | Schema/migration | `database/migrations/0001_01_01_000002_create_jobs_table.php` |
 | Estrutura | Schema/migration | `database/migrations/2026_09_26_000001_add_role_and_status_to_users_table.php` |
 | Estrutura | Schema/migration | `database/migrations/2026_09_26_000002_create_projects_tables.php` |
+| Estrutura | Schema/migration | `database/migrations/2026_09_27_000001_create_funnels_and_stages_tables.php` |
 
 ## Estruturas detectadas
 
@@ -32,6 +33,8 @@ Para Laravel, descreva módulos de domínio, fronteiras HTTP/console e use `data
 | users | Tabela | role:string, deactivated_at:timestamp, must_change_password:boolean | Não detectadas | `database/migrations/2026_09_26_000001_add_role_and_status_to_users_table.php` |
 | projects | Tabela | id:id, name:string, archived_at:timestamp, project_id:foreignId, user_id:foreignId | project_id, user_id | `database/migrations/2026_09_26_000002_create_projects_tables.php` |
 | project_user | Tabela | id:id, name:string, archived_at:timestamp, project_id:foreignId, user_id:foreignId | project_id, user_id | `database/migrations/2026_09_26_000002_create_projects_tables.php` |
+| funnels | Tabela | id:id, project_id:foreignId, name:string, archived_at:timestamp, funnel_id:foreignId, position:integer | project_id, funnel_id | `database/migrations/2026_09_27_000001_create_funnels_and_stages_tables.php` |
+| stages | Tabela | id:id, project_id:foreignId, name:string, archived_at:timestamp, funnel_id:foreignId, position:integer | project_id, funnel_id | `database/migrations/2026_09_27_000001_create_funnels_and_stages_tables.php` |
 <!-- specsfy:database:end -->
 
 ## Decisões, ownership e retenção
@@ -52,3 +55,12 @@ Modelo de domínio aprovado (ainda sem migrations): ver PROJECT.md — projetos,
 | project_user | project_id, user_id | chave composta, FKs cascade | N:N gestor–projeto; vínculo de inativo preservado no formulário |
 
 Migrations: `2026_09_26_000001_add_role_and_status_to_users_table.php` e `2026_09_26_000002_create_projects_tables.php`. Retenção indefinida até política LGPD específica.
+
+## SPEC-0002 — funis e etapas
+
+| Tabela | Campo/índice | Tipo e regra | Relação / retenção |
+| --- | --- | --- | --- |
+| funnels | id, project_id, name, archived_at, created_at, updated_at | `project_id` FK; `name` obrigatório e único por `(project_id, lower(name))`; `archived_at` nulo indica ativo | N:1 `projects`, exclusão em cascata pelo FK; funil arquivado é preservado |
+| stages | id, funnel_id, name, position, created_at, updated_at | `funnel_id` FK; `name` obrigatório e único por `(funnel_id, lower(name))`; `position` inteiro contínuo a partir de 1 na aplicação | N:1 `funnels`, exclusão em cascata pelo FK; etapa pode ser apagada se restar ao menos uma |
+
+Migration: `database/migrations/2026_09_27_000001_create_funnels_and_stages_tables.php`. Índices funcionais `funnels_project_name_lower_unique` e `stages_funnel_name_lower_unique`. O funil novo e suas quatro etapas padrão são criados na mesma transação. Não há exclusão de funil nesta fatia.

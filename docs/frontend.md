@@ -244,7 +244,6 @@
 | resources/js/app.tsx |
 | resources/js/components/app-content.tsx |
 | resources/js/components/app-header.tsx |
-| resources/js/components/app-logo-icon.tsx |
 | resources/js/components/app-logo.tsx |
 | resources/js/components/app-shell.tsx |
 | resources/js/components/app-sidebar-header.tsx |
@@ -255,6 +254,7 @@
 | resources/js/components/confirm-dialog.tsx |
 | resources/js/components/empty-state.tsx |
 | resources/js/components/flash-message.tsx |
+| resources/js/components/funnel-form-sheet.tsx |
 | resources/js/components/heading-small.tsx |
 | resources/js/components/heading.tsx |
 | resources/js/components/icon.tsx |
@@ -264,6 +264,7 @@
 | resources/js/components/nav-user.tsx |
 | resources/js/components/page-header.tsx |
 | resources/js/components/project-form-sheet.tsx |
+| resources/js/components/stage-form-sheet.tsx |
 | resources/js/components/text-link.tsx |
 | resources/js/components/ui/alert.tsx |
 | resources/js/components/ui/avatar.tsx |
@@ -298,14 +299,13 @@
 | resources/js/layouts/app/app-header-layout.tsx |
 | resources/js/layouts/app/app-sidebar-layout.tsx |
 | resources/js/layouts/app-layout.tsx |
-| resources/js/layouts/auth/auth-card-layout.tsx |
 | resources/js/layouts/auth/auth-simple-layout.tsx |
-| resources/js/layouts/auth/auth-split-layout.tsx |
 | resources/js/layouts/auth-layout.tsx |
 | resources/js/layouts/settings/layout.tsx |
 | resources/js/pages/agenda.tsx |
 | resources/js/pages/auth/login.tsx |
 | resources/js/pages/auth/trocar-senha.tsx |
+| resources/js/pages/funis/show.tsx |
 | resources/js/pages/projetos/index.tsx |
 | resources/js/pages/projetos/show.tsx |
 | resources/js/pages/settings/appearance.tsx |

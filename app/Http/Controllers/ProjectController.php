@@ -27,7 +27,15 @@ class ProjectController extends Controller
     {
         Gate::authorize('view', $project);
 
-        return Inertia::render('projetos/show', ['project' => ['id' => $project->id, 'name' => $project->name, 'users' => $project->users()->get(['users.id', 'users.name'])], 'can' => ['update' => request()->user()->isAdm()]]);
+        $adm = request()->user()->isAdm();
+        $funnels = $project->funnels()->withCount('stages')->when(! $adm, fn ($query) => $query->active())
+            ->orderBy('id')->get(['id', 'project_id', 'name', 'archived_at']);
+
+        return Inertia::render('projetos/show', [
+            'project' => ['id' => $project->id, 'name' => $project->name, 'users' => $project->users()->get(['users.id', 'users.name'])],
+            'funnels' => $funnels,
+            'can' => ['update' => $adm, 'manage' => $adm],
+        ]);
     }
 
     private function validated(Request $request, ?Project $project = null): array

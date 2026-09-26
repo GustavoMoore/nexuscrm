@@ -19,6 +19,10 @@ class DatabaseSeeder extends Seeder
             if ($role === 'gestor') {
                 $project = Project::firstOrCreate(['name' => 'Projeto Demo']);
                 $project->users()->syncWithoutDetaching([$user->id]);
+                $funnel = $project->funnels()->firstOrCreate(['name' => 'Funil Demo']);
+                foreach (['Novo contato', 'Qualificação', 'Proposta', 'Negociação'] as $index => $stageName) {
+                    $funnel->stages()->firstOrCreate(['name' => $stageName], ['position' => $index + 1]);
+                }
             }
         }
     }

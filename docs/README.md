@@ -4,8 +4,8 @@
 ## Visão geral
 
 - Frameworks detectados: React, Laravel.
-- Arquivos de código: 361.
-- Arquivos de teste: 9.
+- Arquivos de código: 370.
+- Arquivos de teste: 11.
 
 ## Roteiro
 

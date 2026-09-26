@@ -242,21 +242,21 @@ Relação: relaciona cada arquivo observado à sua superfície.
 | Componentes | .agents/skills/specsfy-specialist-react-ui-components/assets/components/typography/text.tsx | Text, TextLink, Strong, Code |
 | Outras fontes | app/Http/Controllers/Auth/AuthenticatedSessionController.php | AuthenticatedSessionController, create, store, destroy |
 | Outras fontes | app/Http/Controllers/Controller.php | Controller |
+| Outras fontes | app/Http/Controllers/FunnelController.php | FunnelController, validated, store, show, update, archive, unarchive |
 | Outras fontes | app/Http/Controllers/PasswordChangeController.php | PasswordChangeController, edit, update |
 | Outras fontes | app/Http/Controllers/ProjectController.php | ProjectController, index, show, validated, sync, store, update, archive |
 | Outras fontes | app/Http/Controllers/Settings/PasswordController.php | PasswordController, edit, update |
 | Outras fontes | app/Http/Controllers/Settings/ProfileController.php | ProfileController, edit, update |
+| Outras fontes | app/Http/Controllers/StageController.php | StageController, validated, store, update, move, destroy |
 | Outras fontes | app/Http/Controllers/UserController.php | UserController, index, store, update, deactivate, activate, resetPassword |
 | Outras fontes | app/Http/Middleware/EnsurePasswordChanged.php | EnsurePasswordChanged, handle |
 | Outras fontes | app/Http/Middleware/HandleInertiaRequests.php | HandleInertiaRequests, version, share |
 | Outras fontes | app/Http/Requests/Auth/LoginRequest.php | LoginRequest, authorize, rules, authenticate, ensureIsNotRateLimited, throttleKey |
 | Outras fontes | app/Http/Requests/Settings/ProfileUpdateRequest.php | ProfileUpdateRequest, rules |
-| Outras fontes | app/Models/Project.php | Project, casts, users, scopeActive, scopeVisibleTo |
+| Outras fontes | app/Models/Funnel.php | Funnel, casts, project, stages, scopeActive, createDefaultStages |
+| Outras fontes | app/Models/Project.php | Project, casts, users, funnels, scopeActive, scopeVisibleTo |
+| Outras fontes | app/Models/Stage.php | Stage, funnel |
 | Outras fontes | app/Models/User.php | User, casts, projects, isAdm, isActive |
+| Outras fontes | app/Policies/FunnelPolicy.php | FunnelPolicy, view, create, update, archive, unarchive |
 | Outras fontes | app/Policies/ProjectPolicy.php | ProjectPolicy, view, create, update, archive, unarchive |
-| Outras fontes | app/Providers/AppServiceProvider.php | AppServiceProvider, register, boot |
-| Outras fontes | bootstrap/app.php | — |
-| Outras fontes | bootstrap/cache/packages.php | — |
-| Outras fontes | bootstrap/cache/services.php | — |
-| Outras fontes | bootstrap/providers.php | — |
 <!-- specsfy:documentator:end -->

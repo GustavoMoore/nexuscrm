@@ -623,7 +623,7 @@ Feature: Negócio encerrado não se move nem se edita
 
 - Sem Policy nova: leitura usa `Gate::authorize('view', $funnel)` (mais a checagem de funil arquivado já usada em FunnelController::show); toda escrita de negócio também exige funil e projeto ativos (checagem privada no DealController → 403); ações do adm ficam no grupo `can:adm`.
 - Um controller por recurso: `DealController` (index, store, update, note, win, lose, reopen, assignees) e `LossReasonController`.
-- Resolução de pessoa em um método privado do `DealController`, usado por store e update.
+- Resolução de pessoa em uma função privada do `DealController`, usado por store e update.
 - Página única `negocios/index` com estado na query string (`view`, `q`, `closed`, `negocio`), para o link de duplicidade e o botão voltar funcionarem.
 
 #### Migrations

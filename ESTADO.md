@@ -16,7 +16,7 @@ Atualizado: 2026-09-26 (noite).
   - P8: card = pessoa, valor, próximo passo+data (atraso), iniciais; ordem igual à lista; topo com contagem e soma; busca filtra kanban.
   - P9: painel lateral (tela cheia no celular); edita tudo; anotações só acrescentam; Ganhar/Perder/Reabrir; adm mexe em responsáveis ali.
   - P10: ninguém exclui; reabrir volta à etapa de origem.
-  - Discovery FECHADO. Próximo passo: promover para SPEC-0003 (`$specsfy-03-specify`).
+  - Discovery FECHADO. SPEC-0003 em `specs/draft/0003-quadro-negocios/spec.md` (VALID DRAFT, 4 US, 10 FR, 3 NFR, 25 AC, 37 tarefas). Em revisão independente (claude read-only); depois: aprovação do dono → Defined → RED → Codex.
 
 ## Como retomar
 

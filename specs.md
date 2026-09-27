@@ -7,6 +7,7 @@
 | --- | --- | --- | --- |
 | 01 | 0001-acesso-adm-gestores | Defined | — |
 | 02 | 0002-funis-etapas | Defined | — |
+| 03 | 0003-quadro-negocios | Defined | — |
 
 ## Marcos
 

@@ -5,13 +5,13 @@
 | Formato | Specsfy/2.0 |
 | ID | SPEC-0003 |
 | Slug | 0003-quadro-negocios |
-| Status | Draft |
+| Status | Defined |
 | Effort | 5 |
 | Effort updated at | 2026-09-27 |
 | Effort rationale | Cinco tabelas, regra de pessoa única com duplicidade, kanban com arrastar nativo, painel de detalhe e ajuste em apagar etapa; sem integração externa. |
 | ClickUp Task | |
 | Milestones | Núcleo (MVP) — fatia 3 |
-| Definition Gate | Pending |
+| Definition Gate | Passed |
 | Plan Gate | Pending |
 | Delivery Gate | Pending |
 | Evidence Contract | 1 |
@@ -820,20 +820,20 @@ tests/Feature/Deals/{DealTest,DealBoardTest,LossReasonTest,DealStageTest}.php
 
 #### Gate do Ato I — Definição
 
-- **Resultado**: Pending
-- **Comando**: `node .agents/skills/specsfy-04-validate/scripts/validate_spec.mjs specs/draft/0003-quadro-negocios/spec.md`
-- **Achados**: Pending.
+- **Resultado**: Passed (2026-09-27)
+- **Comando**: `node .agents/skills/specsfy-04-validate/scripts/validate_spec.mjs specs/defined/0003-quadro-negocios/spec.md`
+- **Achados**: validação estrutural sem erros; revisão independente (18 achados) incorporada; aprovação do responsável em 2026-09-27.
 
 #### Gate do Ato II — Plano
 
 - **Resultado**: Pending
-- **Comando**: `node .agents/skills/specsfy-05-tasks/scripts/validate_tasks.mjs specs/draft/0003-quadro-negocios/spec.md`
+- **Comando**: `node .agents/skills/specsfy-05-tasks/scripts/validate_tasks.mjs specs/defined/0003-quadro-negocios/spec.md`
 - **Achados**: Pending.
 
 #### Gate do Ato III — Entrega
 
 - **Resultado**: Pending
-- **Comando**: `node .agents/skills/specsfy-06-tdd-bdd/scripts/check_traceability.mjs specs/draft/0003-quadro-negocios/spec.md tests/Feature/Deals`
+- **Comando**: `node .agents/skills/specsfy-06-tdd-bdd/scripts/check_traceability.mjs specs/defined/0003-quadro-negocios/spec.md tests/Feature/Deals`
 - **Achados**: Pending.
 
 ### 14. Tarefas
@@ -1176,7 +1176,7 @@ Formato:
 
 ### 18. Definition of Done
 
-- [ ] `Definition Gate` está `Passed`.
+- [x] `Definition Gate` está `Passed`.
 - [ ] `Plan Gate` está `Passed`.
 - [ ] `Delivery Gate` está `Passed`.
 - [ ] Todos os cenários `AC` aplicáveis passam.

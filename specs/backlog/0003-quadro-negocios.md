@@ -3,7 +3,7 @@
 | Metainformação | Valor |
 | --- | --- |
 | ID | BACKLOG-0003 |
-| Status | Ready |
+| Status | Promoted |
 | Produto | A esclarecer |
 | Épico | A esclarecer |
 | Funcionalidade | A esclarecer |
@@ -11,7 +11,7 @@
 | Prioridade | Não priorizado |
 | Milestones | |
 | Criado em | 2026-09-26 |
-| Spec promovida | Nenhuma |
+| Spec promovida | specs/defined/0003-quadro-negocios/spec.md |
 
 ## Ideia original
 

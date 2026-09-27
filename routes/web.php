@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DealController;
 use App\Http\Controllers\FunnelController;
+use App\Http\Controllers\LossReasonController;
 use App\Http\Controllers\PasswordChangeController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StageController;
@@ -16,7 +18,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/projetos', [ProjectController::class, 'index'])->name('projects.index');
     Route::get('/projetos/{project}', [ProjectController::class, 'show'])->name('projects.show');
     Route::get('/projetos/{project}/funis/{funnel}', [FunnelController::class, 'show'])->scopeBindings()->name('funnels.show');
+    Route::scopeBindings()->group(function () {
+        Route::get('/projetos/{project}/funis/{funnel}/negocios', [DealController::class, 'index'])->name('deals.index');
+        Route::post('/projetos/{project}/funis/{funnel}/negocios', [DealController::class, 'store']);
+        Route::patch('/projetos/{project}/funis/{funnel}/negocios/{deal}', [DealController::class, 'update']);
+        Route::post('/projetos/{project}/funis/{funnel}/negocios/{deal}/anotacoes', [DealController::class, 'note']);
+        Route::post('/projetos/{project}/funis/{funnel}/negocios/{deal}/ganhar', [DealController::class, 'win']);
+        Route::post('/projetos/{project}/funis/{funnel}/negocios/{deal}/perder', [DealController::class, 'lose']);
+        Route::post('/projetos/{project}/funis/{funnel}/negocios/{deal}/reabrir', [DealController::class, 'reopen']);
+    });
     Route::middleware('can:adm')->group(function () {
+        Route::scopeBindings()->group(function () {
+            Route::put('/projetos/{project}/funis/{funnel}/negocios/{deal}/responsaveis', [DealController::class, 'assignees']);
+            Route::post('/projetos/{project}/motivos-perda', [LossReasonController::class, 'store']);
+            Route::patch('/projetos/{project}/motivos-perda/{lossReason}', [LossReasonController::class, 'update']);
+            Route::post('/projetos/{project}/motivos-perda/{lossReason}/desativar', [LossReasonController::class, 'deactivate']);
+        });
         Route::post('/projetos', [ProjectController::class, 'store']);
         Route::patch('/projetos/{project}', [ProjectController::class, 'update']);
         Route::post('/projetos/{project}/arquivar', [ProjectController::class, 'archive']);

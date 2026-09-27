@@ -16,7 +16,9 @@ Atualizado: 2026-09-26 (noite).
   - P8: card = pessoa, valor, próximo passo+data (atraso), iniciais; ordem igual à lista; topo com contagem e soma; busca filtra kanban.
   - P9: painel lateral (tela cheia no celular); edita tudo; anotações só acrescentam; Ganhar/Perder/Reabrir; adm mexe em responsáveis ali.
   - P10: ninguém exclui; reabrir volta à etapa de origem.
-  - SPEC-0003 APROVADA (Defined) em `specs/defined/0003-quadro-negocios/spec.md`. Próximo: RED (T001–T025 em tests/Feature/Deals) → Codex implementa.
+  - SPEC-0003 APROVADA (Defined) em `specs/defined/0003-quadro-negocios/spec.md`.
+  - 27/09 01:40: Codex implementou T001–T037 (NÃO commitado). Gates re-rodados pelo orquestrador: 69 testes/637 asserções verdes, tsc/lint/build/diff-check ok, sem overflow 1440/390. Prints em ~/.hermes/cache/scratch/nexus-{board,sheet}-{1440,390}.png (script nexus-shots.cjs).
+  - Próximo: aprovação visual do usuário → commit `feat: SPEC-0003` + marcar gates na spec + `graphify update .`.
 - Acesso pelo celular: `tailscale serve` no Windows → http://gustavo.tailb201f7.ts.net:8000 (tailnet only). Usa build de produção (public/hot removido); após mudança de front, `npm run build`.
 
 ## Como retomar

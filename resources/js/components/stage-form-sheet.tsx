@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetT
 import { useForm } from '@inertiajs/react';
 import { FormEvent, useRef } from 'react';
 
-export type StageData = { id: number; name: string; position: number };
+export type StageData = { id: number; name: string; position: number; deals_count?: number };
 
 export function StageFormSheet({
     projectId,

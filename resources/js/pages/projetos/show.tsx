@@ -2,6 +2,7 @@ import { ConfirmDialog } from '@/components/confirm-dialog';
 import { EmptyState } from '@/components/empty-state';
 import { FlashMessage } from '@/components/flash-message';
 import { FunnelData, FunnelFormSheet } from '@/components/funnel-form-sheet';
+import { LossReason, LossReasonFormSheet } from '@/components/loss-reason-form-sheet';
 import { PageHeader } from '@/components/page-header';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -14,13 +15,17 @@ export default function Projeto({
     project,
     funnels,
     can,
+    loss_reasons,
 }: {
     project: { id: number; name: string; users: { id: number; name: string }[] };
     funnels: FunnelData[];
     can: { manage: boolean };
+    loss_reasons: LossReason[];
 }) {
     const [sheet, setSheet] = useState<{ funnel?: FunnelData } | null>(null);
     const [confirm, setConfirm] = useState<FunnelData | null>(null);
+    const [reasonSheet, setReasonSheet] = useState<{ reason?: LossReason } | null>(null);
+    const [reasonConfirm, setReasonConfirm] = useState<LossReason | null>(null);
     const [status, setStatus] = useState<'ativos' | 'arquivados'>('ativos');
     const visible = can.manage ? funnels.filter((funnel) => (status === 'arquivados' ? !!funnel.archived_at : !funnel.archived_at)) : funnels;
     const toggle = (funnel: FunnelData) =>
@@ -126,7 +131,74 @@ export default function Projeto({
                         </div>
                     )}
                 </section>
+                {can.manage && (
+                    <section className="space-y-4">
+                        <PageHeader
+                            title="Motivos de perda"
+                            description="Motivos disponíveis ao encerrar negócios."
+                            action={<Button onClick={() => setReasonSheet({})}>Novo motivo</Button>}
+                        />
+                        <div className="overflow-x-auto rounded-lg border">
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead>ID</TableHead>
+                                        <TableHead>Nome</TableHead>
+                                        <TableHead>Status</TableHead>
+                                        <TableHead>Ações</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {loss_reasons.map((reason) => (
+                                        <TableRow key={reason.id}>
+                                            <TableCell>{reason.id}</TableCell>
+                                            <TableCell>{reason.name}</TableCell>
+                                            <TableCell>{reason.deactivated_at ? 'Inativo' : 'Ativo'}</TableCell>
+                                            <TableCell className="space-x-2">
+                                                <Button size="sm" variant="outline" onClick={() => setReasonSheet({ reason })}>
+                                                    Editar
+                                                </Button>
+                                                {!reason.deactivated_at && (
+                                                    <Button size="sm" variant="outline" onClick={() => setReasonConfirm(reason)}>
+                                                        Desativar
+                                                    </Button>
+                                                )}
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </div>
+                    </section>
+                )}
             </main>
+            {reasonSheet && (
+                <LossReasonFormSheet
+                    key={reasonSheet.reason?.id ?? 'new'}
+                    base={`/projetos/${project.id}/motivos-perda`}
+                    reason={reasonSheet.reason}
+                    open
+                    onOpenChange={(open) => {
+                        if (!open) setReasonSheet(null);
+                    }}
+                />
+            )}
+            <ConfirmDialog
+                open={!!reasonConfirm}
+                onOpenChange={(open) => {
+                    if (!open) setReasonConfirm(null);
+                }}
+                title="Desativar motivo"
+                description={`O motivo ${reasonConfirm?.name ?? ''} deixará de aparecer na escolha de perda.`}
+                onConfirm={() =>
+                    reasonConfirm &&
+                    router.post(
+                        `/projetos/${project.id}/motivos-perda/${reasonConfirm.id}/desativar`,
+                        {},
+                        { onSuccess: () => setReasonConfirm(null) },
+                    )
+                }
+            />
             {sheet && (
                 <FunnelFormSheet
                     key={sheet.funnel?.id ?? 'new'}

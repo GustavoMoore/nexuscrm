@@ -45,7 +45,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user() ? array_merge($request->user()->toArray(), ['is_adm' => $request->user()->isAdm()]) : null,
             ],
-            'flash' => ['success' => $request->session()->get('success')],
+            'flash' => ['success' => $request->session()->get('success'), 'existing_deal_id' => $request->session()->get('existing_deal_id'), 'person_notice' => $request->session()->get('person_notice')],
         ]);
     }
 }

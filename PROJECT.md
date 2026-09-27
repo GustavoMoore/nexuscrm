@@ -31,3 +31,7 @@ Para Laravel, descreva módulos de domínio, fronteiras HTTP/console e use `data
 ## Evolução da primeira fatia
 
 A SPEC-0001 define o acesso inicial: o administrador cria e desativa gestores, administra projetos e atribuições, e gestores acessam apenas projetos ativos atribuídos. A interface inclui login, troca de senha provisória, Minha agenda vazia, Usuários, Projetos e detalhe com estado vazio de funis. Cadastro público, recuperação de senha por e-mail e autoexclusão foram removidos do código. A efetivação no banco e a verificação funcional dependem de restabelecer a conexão Postgres local; consulte a evidência de execução da entrega.
+
+## Evolução do quadro comercial
+
+Após o acesso, projetos, funis e etapas das primeiras fatias, a SPEC-0003 acrescenta pessoas por projeto e negócios acompanhados por funil. Gestores atribuídos criam e trabalham negócios no quadro ou na lista, registram próximos passos e anotações, movem etapas e encerram como ganhos ou perdidos. O administrador também define responsáveis e mantém motivos de perda. Funis e projetos arquivados permanecem consultáveis pelo administrador, sem escrita de negócio. Agenda pessoal, exclusão de pessoas ou negócios e relatórios continuam fora desta fatia.

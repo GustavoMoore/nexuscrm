@@ -26,6 +26,11 @@ class Funnel extends Model
         return $this->hasMany(Stage::class)->orderBy('position');
     }
 
+    public function deals(): HasMany
+    {
+        return $this->hasMany(Deal::class);
+    }
+
     public function scopeActive(Builder $query): Builder
     {
         return $query->whereNull('archived_at');

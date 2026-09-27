@@ -11,6 +11,15 @@ class Project extends Model
 {
     protected $fillable = ['name'];
 
+    protected static function booted(): void
+    {
+        static::created(function (Project $project) {
+            foreach (['Preço', 'Sem resposta', 'Comprou de outro', 'Sem interesse', 'Outro'] as $name) {
+                $project->lossReasons()->create(['name' => $name]);
+            }
+        });
+    }
+
     protected function casts(): array
     {
         return ['archived_at' => 'datetime'];
@@ -24,6 +33,16 @@ class Project extends Model
     public function funnels(): HasMany
     {
         return $this->hasMany(Funnel::class);
+    }
+
+    public function people(): HasMany
+    {
+        return $this->hasMany(Person::class);
+    }
+
+    public function lossReasons(): HasMany
+    {
+        return $this->hasMany(LossReason::class);
     }
 
     public function scopeActive(Builder $query): Builder

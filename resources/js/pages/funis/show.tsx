@@ -5,9 +5,10 @@ import { PageHeader } from '@/components/page-header';
 import { StageData, StageFormSheet } from '@/components/stage-form-sheet';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AppLayout from '@/layouts/app-layout';
-import { Head, router } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
 import { ArrowDown, ArrowUp } from 'lucide-react';
 import { useState } from 'react';
 
@@ -24,12 +25,23 @@ export default function Funil({
 }) {
     const [sheet, setSheet] = useState<{ stage?: StageData } | null>(null);
     const [confirm, setConfirm] = useState<StageData | null>(null);
+    const [destination, setDestination] = useState('');
+    const [deleteError, setDeleteError] = useState('');
     const base = `/projetos/${project.id}/funis/${funnel.id}/etapas`;
     const move = (stage: StageData, direction: 'up' | 'down') => {
         const button = document.activeElement as HTMLButtonElement;
         router.post(`${base}/${stage.id}/mover`, { direction }, { preserveScroll: true, onSuccess: () => button?.focus() });
     };
-    const destroy = (stage: StageData) => router.delete(`${base}/${stage.id}`, { onSuccess: () => setConfirm(null) });
+    const destroy = (stage: StageData) =>
+        router.delete(`${base}/${stage.id}`, {
+            data: { destination_stage_id: destination || undefined },
+            onSuccess: () => {
+                setConfirm(null);
+                setDestination('');
+                setDeleteError('');
+            },
+            onError: (errors) => setDeleteError(errors.destination_stage_id ?? errors.stage ?? 'Não foi possível apagar a etapa.'),
+        });
 
     return (
         <AppLayout
@@ -44,7 +56,14 @@ export default function Funil({
                 <PageHeader
                     title={funnel.name}
                     description={`Funil #${funnel.id} de ${project.name}`}
-                    action={can.manage && <Button onClick={() => setSheet({})}>Nova etapa</Button>}
+                    action={
+                        <div className="flex gap-2">
+                            <Button variant="outline" asChild>
+                                <Link href={`/projetos/${project.id}/funis/${funnel.id}/negocios`}>Abrir quadro</Link>
+                            </Button>
+                            {can.manage && <Button onClick={() => setSheet({})}>Nova etapa</Button>}
+                        </div>
+                    }
                 />
                 <FlashMessage />
                 {funnel.archived_at && <Badge variant="secondary">Arquivado</Badge>}
@@ -96,7 +115,11 @@ export default function Funil({
                                                         size="sm"
                                                         variant="outline"
                                                         disabled={stages.length === 1}
-                                                        onClick={() => setConfirm(stage)}
+                                                        onClick={() => {
+                                                            setConfirm(stage);
+                                                            setDeleteError('');
+                                                            setDestination('');
+                                                        }}
                                                     >
                                                         Apagar
                                                     </Button>
@@ -130,7 +153,28 @@ export default function Funil({
                 title="Apagar etapa"
                 description={`A etapa ${confirm?.name ?? ''} será apagada e as posições restantes serão renumeradas.`}
                 onConfirm={() => confirm && destroy(confirm)}
-            />
+                error={deleteError}
+            >
+                {confirm && confirm.deals_count && stages.length > 1 && (
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">Mover negócios para</label>
+                        <Select value={destination} onValueChange={setDestination}>
+                            <SelectTrigger aria-label="Etapa de destino">
+                                <SelectValue placeholder="Selecione uma etapa" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {stages
+                                    .filter((stage) => stage.id !== confirm.id)
+                                    .map((stage) => (
+                                        <SelectItem key={stage.id} value={String(stage.id)}>
+                                            {stage.name}
+                                        </SelectItem>
+                                    ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
+                )}
+            </ConfirmDialog>
         </AppLayout>
     );
 }

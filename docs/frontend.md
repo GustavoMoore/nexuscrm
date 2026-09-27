@@ -3,7 +3,7 @@
 <!-- specsfy:documentator:start -->
 ## Superfícies observadas
 
-- Componentes, páginas ou views: 304.
+- Componentes, páginas ou views: 308.
 - Tailwind: detectado.
 - Tokens CSS: --spacing, --btn-icon, --btn-border, --btn-bg, --radius-lg, --theme, --color-white, --btn-hover-overlay, --color-zinc-500, --color-zinc-700, --color-zinc-400, --color-zinc-900, --color-zinc-950, --color-zinc-600, --color-zinc-300, --color-zinc-800, --color-indigo-500, --color-indigo-600, --color-indigo-300, --color-indigo-200, --color-cyan-300, --color-cyan-400, --color-cyan-500, --color-red-600, --color-red-700, --color-red-300, --color-red-200, --color-orange-500, --color-orange-600, --color-orange-300, --color-orange-200, --color-amber-400, --color-amber-500, --color-amber-600, --color-yellow-300, --color-yellow-400, --color-yellow-600, --color-yellow-700, --color-lime-300, --color-lime-400, --color-lime-600, --color-lime-700, --color-green-600, --color-green-700, --color-emerald-600, --color-emerald-700, --color-teal-600, --color-teal-700, --color-sky-500, --color-sky-600, --color-blue-600, --color-blue-700, --color-blue-400, --color-blue-300, --color-violet-500, --color-violet-600, --color-violet-300, --color-violet-200, --color-purple-500, --color-purple-600, --color-purple-300, --color-purple-200, --color-fuchsia-500, --color-fuchsia-600, --color-fuchsia-300, --color-fuchsia-200, --color-pink-500, --color-pink-600, --color-pink-300, --color-pink-200, --color-rose-500, --color-rose-600, --color-rose-300, --color-rose-200, --gutter, --anchor-gap, --anchor-padding, --anchor-offset, --avatar-radius, --checkbox-checked-bg, --checkbox-checked-border, --checkbox-check, --color-amber-950, --color-yellow-950, --color-lime-950, --color-cyan-950, --input-width, --button-width, --radio-checked-bg, --radio-checked-border, --radio-indicator, --radio-checked-indicator, --switch-bg-ring, --switch-bg, --switch-ring, --switch-shadow, --color-black, --switch, --color-red-900, --color-orange-900, --color-green-900, --color-emerald-500, --color-emerald-900, --color-teal-900, --color-sky-900, --color-blue-900, --color-indigo-900, --color-violet-900, --color-purple-900, --color-fuchsia-900, --color-pink-900, --color-rose-900, --radius-3xl, --radius-md, --container-7xl, --radius-xl, --color-indigo-100, --font-sans, --radius, --radius-sm, --color-background, --background, --color-foreground, --foreground, --color-card, --card, --color-card-foreground, --card-foreground, --color-popover, --popover, --color-popover-foreground, --popover-foreground, --color-primary, --primary, --color-primary-foreground, --primary-foreground, --color-secondary, --secondary, --color-secondary-foreground, --secondary-foreground, --color-muted, --muted, --color-muted-foreground, --muted-foreground, --color-accent, --accent, --color-accent-foreground, --accent-foreground, --color-destructive, --destructive, --color-destructive-foreground, --destructive-foreground, --color-border, --border, --color-input, --input, --color-ring, --ring, --color-chart-1, --chart-1, --color-chart-2, --chart-2, --color-chart-3, --chart-3, --color-chart-4, --chart-4, --color-chart-5, --chart-5, --color-sidebar, --sidebar-background, --color-sidebar-foreground, --sidebar-foreground, --color-sidebar-primary, --sidebar-primary, --color-sidebar-primary-foreground, --sidebar-primary-foreground, --color-sidebar-accent, --sidebar-accent, --color-sidebar-accent-foreground, --sidebar-accent-foreground, --color-sidebar-border, --sidebar-border, --color-sidebar-ring, --sidebar-ring, --color-gray-200, --radix-dropdown-menu-trigger-width, --radix-navigation-menu-viewport-height, --radix-navigation-menu-viewport-width, --radix-select-trigger-height, --radix-select-trigger-width, --sidebar-width, --sidebar-width-icon, --skeleton-width.
 
@@ -252,6 +252,8 @@
 | resources/js/components/appearance-tabs.tsx |
 | resources/js/components/breadcrumbs.tsx |
 | resources/js/components/confirm-dialog.tsx |
+| resources/js/components/deal-form-sheet.tsx |
+| resources/js/components/deal-sheet.tsx |
 | resources/js/components/empty-state.tsx |
 | resources/js/components/flash-message.tsx |
 | resources/js/components/funnel-form-sheet.tsx |
@@ -259,6 +261,7 @@
 | resources/js/components/heading.tsx |
 | resources/js/components/icon.tsx |
 | resources/js/components/input-error.tsx |
+| resources/js/components/loss-reason-form-sheet.tsx |
 | resources/js/components/nav-footer.tsx |
 | resources/js/components/nav-main.tsx |
 | resources/js/components/nav-user.tsx |
@@ -306,6 +309,7 @@
 | resources/js/pages/auth/login.tsx |
 | resources/js/pages/auth/trocar-senha.tsx |
 | resources/js/pages/funis/show.tsx |
+| resources/js/pages/negocios/index.tsx |
 | resources/js/pages/projetos/index.tsx |
 | resources/js/pages/projetos/show.tsx |
 | resources/js/pages/settings/appearance.tsx |

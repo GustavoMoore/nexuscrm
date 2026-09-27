@@ -111,3 +111,21 @@ Telas: `/agenda` (`pages/agenda.tsx`), `/usuarios` (`pages/usuarios/index.tsx`),
 | `/projetos/{id}/funis/{id}` | `resources/js/pages/funis/show.tsx` | PageHeader, FlashMessage, EmptyState, Table, Badge, StageFormSheet, ConfirmDialog | Etapas ordenadas; adm adiciona, edita, sobe, desce e apaga; gestor consulta | dados, erro no painel, limites de movimento desabilitados, última etapa protegida |
 
 A navegação principal continua em Projetos. A linha do funil e seu link abrem o detalhe. O shell existente apresenta os breadcrumbs `Projetos / projeto / funil`. Os botões de mover usam `ArrowUp`/`ArrowDown`, têm nome acessível com a etapa e ficam desabilitados nas pontas. Os painéis laterais usam o foco preso e o comportamento de Esc da primitive Radix.
+
+## SPEC-0003 — quadro de negócios
+
+| Bloco | Arquivo | Origem | Consumidores / contrato |
+| --- | --- | --- | --- |
+| DealFormSheet | `resources/js/components/deal-form-sheet.tsx` | shadcn Sheet/Input/Checkbox | Quadro; cria negócio e pessoa, valida campos, mostra link de duplicidade |
+| DealSheet | `resources/js/components/deal-sheet.tsx` | shadcn Sheet/Dialog/Select/Checkbox | Quadro; edita, anota, ganha, perde, reabre e gerencia responsáveis conforme permissão |
+| LossReasonFormSheet | `resources/js/components/loss-reason-form-sheet.tsx` | shadcn Sheet/Input | Projeto; cria e renomeia motivo de perda |
+| ConfirmDialog | `resources/js/components/confirm-dialog.tsx` | SPEC-0001, shadcn Dialog | Etapas recebem Select de destino e erro no próprio diálogo; motivos usam desativação |
+| PageHeader, FlashMessage, EmptyState | `resources/js/components/` | SPEC-0001 | Quadro e projeto; título, feedback, pessoa reutilizada e estados vazios |
+
+| Tela ou rota | Arquivo | Componentes React usados | Dados e ações | Estados |
+| --- | --- | --- | --- | --- |
+| `/projetos/{p}/funis/{f}/negocios` | `resources/js/pages/negocios/index.tsx` | PageHeader, ToggleGroup, Input, Table, Badge, Avatar, Select, DealFormSheet, DealSheet | Kanban ou lista; busca; encerrados; mover por arrastar nativo ou Select; painel por `?negocio=` | vazio, busca sem resultado, atraso por texto e ícone, formulário com erro, duplicidade e leitura de arquivados |
+| `/projetos/{p}` | `resources/js/pages/projetos/show.tsx` | PageHeader, Table, LossReasonFormSheet, ConfirmDialog | Adm cria, renomeia e desativa motivos; linha do funil segue para sua página | ativos, inativos e erro de validação |
+| `/projetos/{p}/funis/{f}` | `resources/js/pages/funis/show.tsx` | PageHeader, Table, ConfirmDialog, Select | Botão Abrir quadro; apagar etapa com escolha de destino e erro | etapa vazia ou com negócios; permissão de adm |
+
+O acesso ao quadro parte de Projetos → projeto → funil → Abrir quadro. Breadcrumbs no layout: Projetos / projeto / funil / Quadro. O painel usa o foco preso e Esc do Radix; em celular ocupa toda a largura. A lista mantém ID visível e a ação de mover por teclado; o kanban tem rolagem horizontal com snap em telas estreitas. Não há item novo no menu principal.

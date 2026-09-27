@@ -242,7 +242,9 @@ Relação: relaciona cada arquivo observado à sua superfície.
 | Componentes | .agents/skills/specsfy-specialist-react-ui-components/assets/components/typography/text.tsx | Text, TextLink, Strong, Code |
 | Outras fontes | app/Http/Controllers/Auth/AuthenticatedSessionController.php | AuthenticatedSessionController, create, store, destroy |
 | Outras fontes | app/Http/Controllers/Controller.php | Controller |
+| Outras fontes | app/Http/Controllers/DealController.php | DealController, DUPLICATE, authorizeView, authorizeWrite, duplicate, openDeal, personData, resolvePerson |
 | Outras fontes | app/Http/Controllers/FunnelController.php | FunnelController, validated, store, show, update, archive, unarchive |
+| Outras fontes | app/Http/Controllers/LossReasonController.php | LossReasonController, validated, store, update, deactivate |
 | Outras fontes | app/Http/Controllers/PasswordChangeController.php | PasswordChangeController, edit, update |
 | Outras fontes | app/Http/Controllers/ProjectController.php | ProjectController, index, show, validated, sync, store, update, archive |
 | Outras fontes | app/Http/Controllers/Settings/PasswordController.php | PasswordController, edit, update |
@@ -253,10 +255,8 @@ Relação: relaciona cada arquivo observado à sua superfície.
 | Outras fontes | app/Http/Middleware/HandleInertiaRequests.php | HandleInertiaRequests, version, share |
 | Outras fontes | app/Http/Requests/Auth/LoginRequest.php | LoginRequest, authorize, rules, authenticate, ensureIsNotRateLimited, throttleKey |
 | Outras fontes | app/Http/Requests/Settings/ProfileUpdateRequest.php | ProfileUpdateRequest, rules |
-| Outras fontes | app/Models/Funnel.php | Funnel, casts, project, stages, scopeActive, createDefaultStages |
-| Outras fontes | app/Models/Project.php | Project, casts, users, funnels, scopeActive, scopeVisibleTo |
-| Outras fontes | app/Models/Stage.php | Stage, funnel |
-| Outras fontes | app/Models/User.php | User, casts, projects, isAdm, isActive |
-| Outras fontes | app/Policies/FunnelPolicy.php | FunnelPolicy, view, create, update, archive, unarchive |
-| Outras fontes | app/Policies/ProjectPolicy.php | ProjectPolicy, view, create, update, archive, unarchive |
+| Outras fontes | app/Models/Deal.php | Deal, casts, funnel, stage, person, lossReason, users, notes |
+| Outras fontes | app/Models/DealNote.php | DealNote, deal, author |
+| Outras fontes | app/Models/Funnel.php | Funnel, casts, project, stages, deals, scopeActive, createDefaultStages |
+| Outras fontes | app/Models/LossReason.php | LossReason, casts, project |
 <!-- specsfy:documentator:end -->

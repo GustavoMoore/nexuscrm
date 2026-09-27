@@ -54,12 +54,20 @@ class StageController extends Controller
         return back()->with('success', 'Etapa movida.');
     }
 
-    public function destroy(Project $project, Funnel $funnel, Stage $stage)
+    public function destroy(Request $request, Project $project, Funnel $funnel, Stage $stage)
     {
-        DB::transaction(function () use ($funnel, $stage) {
+        DB::transaction(function () use ($request, $funnel, $stage) {
             $stages = $funnel->stages()->lockForUpdate()->get();
             if ($stages->count() <= 1) {
                 throw ValidationException::withMessages(['stage' => 'O funil deve manter ao menos uma etapa.']);
+            }
+            if ($stage->deals()->exists()) {
+                $data = $request->validate(['destination_stage_id' => ['required', 'integer']]);
+                $destination = $funnel->stages()->whereKey($data['destination_stage_id'])->whereKeyNot($stage->id)->first();
+                if (! $destination) {
+                    throw ValidationException::withMessages(['destination_stage_id' => 'Escolha outra etapa deste funil.']);
+                }
+                $stage->deals()->update(['stage_id' => $destination->id]);
             }
             $stage->delete();
             foreach ($stages->where('id', '!=', $stage->id)->values() as $index => $remaining) {

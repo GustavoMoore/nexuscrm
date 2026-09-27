@@ -45,7 +45,7 @@ class FunnelController extends Controller
         return Inertia::render('funis/show', [
             'project' => $project->only(['id', 'name']),
             'funnel' => $funnel->only(['id', 'name', 'archived_at']),
-            'stages' => $funnel->stages()->get(['id', 'name', 'position']),
+            'stages' => $funnel->stages()->withCount('deals')->get(['id', 'name', 'position']),
             'can' => ['manage' => $request->user()->isAdm()],
         ]);
     }

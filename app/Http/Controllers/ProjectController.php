@@ -34,6 +34,7 @@ class ProjectController extends Controller
         return Inertia::render('projetos/show', [
             'project' => ['id' => $project->id, 'name' => $project->name, 'users' => $project->users()->get(['users.id', 'users.name'])],
             'funnels' => $funnels,
+            'loss_reasons' => $adm ? $project->lossReasons()->orderBy('name')->get(['id', 'name', 'deactivated_at']) : [],
             'can' => ['update' => $adm, 'manage' => $adm],
         ]);
     }
